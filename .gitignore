@@ -27,3 +27,7 @@ infra/heartbeats/.state/*.lock
 __pycache__/
 *.pyc
 services/**/.venv/
+
+# Stryker mutation testing
+.stryker-tmp/
+reports/mutation/

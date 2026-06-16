@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="420" viewBox="0 0 1020 420">
+<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
+<rect width="1020" height="420" fill="#ffffff"/>
+<text x="510.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">Widget — packages/widget (state machine)</text>
+<line x1="205" y1="185" x2="235" y2="185" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<line x1="400" y1="185" x2="430" y2="185" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<line x1="595" y1="185" x2="625" y2="185" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<line x1="790" y1="185" x2="820" y2="185" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<line x1="510" y1="220" x2="520" y2="300" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="515.0" y="254.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">fail</tspan></text>
+<line x1="705" y1="220" x2="540" y2="300" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="622.5" y="254.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">fail</tspan></text>
+<rect x="40" y="150" width="165" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
+<text x="122.5" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">idle</text>
+<text x="122.5" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">awaiting photo</text>
+<rect x="235" y="150" width="165" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="317.5" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">staged</text>
+<text x="317.5" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">photo validated</text>
+<rect x="430" y="150" width="165" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="512.5" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">submitting</text>
+<text x="512.5" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">POST /v1/tryons</text>
+<rect x="625" y="150" width="165" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="707.5" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">polling</text>
+<text x="707.5" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">GET /v1/tryons/:id</text>
+<rect x="820" y="150" width="165" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
+<text x="902.5" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">done</text>
+<text x="902.5" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">result rendered</text>
+<rect x="430" y="300" width="200" height="64" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6" stroke-dasharray="6 5"/>
+<text x="530.0" y="328.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">error</text>
+<text x="530.0" y="347.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">typed copy per ErrorCode</text>
+<text x="40" y="350" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Framework-free Web Component &lt;tryit-widget&gt;. Every transition is a pure reducer; every error maps to human copy (error-copy.ts). No dead controls.</text>
+</svg>

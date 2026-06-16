@@ -17,6 +17,7 @@
     "build": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "mutation": "stryker run",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src"
   },

@@ -99,3 +99,48 @@ jobs:
       # Fail the build on any high or critical advisory (CLAUDE.md S5.6).
       - name: Audit dependencies
         run: pnpm audit --audit-level=high
+
+  e2e:
+    name: E2E (Playwright, live browser)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Warm the workspace + Next builds so the Playwright webServer start
+      # stays inside its timeout on a cold CI cache.
+      - name: Build workspace
+        run: pnpm build
+
+      - name: Install Playwright Chromium
+        run: pnpm --filter @tryit/e2e exec playwright install --with-deps chromium
+
+      # The Playwright config webServer boots apps/api (3001) + demo-shop
+      # (3002) in production mode and drives the real browser end-to-end.
+      - name: Run live E2E suite
+        run: pnpm --filter @tryit/e2e test
+        env:
+          CI: 'true'
+          TRYIT_DEV_DEMO: '1'
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/playwright-report/
+          retention-days: 7

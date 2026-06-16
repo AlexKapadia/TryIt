@@ -117,11 +117,15 @@ export class TryItClient {
    * request never reaches the network), POSTs it to `${baseUrl}/v1/tryons`, and parses the
    * response body into a {@link TryOnJob} before returning.
    *
+   * Pass an optional `idempotencyKey` to make a retry safe: the server returns the prior job for
+   * the same (tenant, key) instead of re-running the provider, so a network retry never
+   * double-charges. The key is sent as the `idempotency-key` header (parity with the widget).
+   *
    * @throws {ApiClientError} `INVALID_INPUT` if the request fails contract validation; the
    *   mapped contract error on a non-2xx response; `PROVIDER_ERROR` (fail-closed) on a
    *   transport failure or an unparseable success body.
    */
-  public async createTryOn(request: TryOnRequest): Promise<TryOnJob> {
+  public async createTryOn(request: TryOnRequest, idempotencyKey?: string): Promise<TryOnJob> {
     let validated: TryOnRequest;
     try {
       // fail-closed: parse BEFORE any fetch so a bad request never leaves the process.
@@ -132,7 +136,13 @@ export class TryItClient {
       throw apiClientErrorFromContract(invalidInput('try-on request failed contract validation'));
     }
 
-    const response = await this.#send('POST', '/v1/tryons', JSON.stringify(validated));
+    // A blank/whitespace key is treated as absent so we never index on an empty string.
+    const trimmedKey = idempotencyKey?.trim();
+    const extraHeaders =
+      trimmedKey !== undefined && trimmedKey.length > 0
+        ? { 'idempotency-key': trimmedKey }
+        : undefined;
+    const response = await this.#send('POST', '/v1/tryons', JSON.stringify(validated), extraHeaders);
     return this.#parseJobResponse(response);
   }
 
@@ -194,10 +204,12 @@ export class TryItClient {
     method: 'GET' | 'POST',
     path: string,
     body?: string,
+    extraHeaders?: Record<string, string>,
   ): Promise<FetchLikeResponse> {
     const headers: Record<string, string> = {
       // Credential travels only as a Bearer token; never logged or placed in an error message.
       Authorization: `Bearer ${this.#apiKey}`,
+      ...(extraHeaders ?? {}),
     };
     // Build init incrementally so `body` is only set when present — exactOptionalPropertyTypes
     // forbids passing an explicit `undefined` for an optional property.

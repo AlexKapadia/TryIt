@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Security gate — packages/security — TryIt evidence</title><meta name="viewport" content="width=device-width, initial-scale=1"/><style>html,body{margin:0;background:#fafafa;color:#111;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;}.wrap{max-width:1180px;margin:0 auto;padding:32px 20px;}h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:#444;text-transform:uppercase;margin:0 0 4px;}p.sub{margin:0 0 20px;color:#888;font-size:13px;}.frame{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}.frame svg{width:100%;height:auto;display:block;}</style></head><body><div class="wrap"><h1>Security gate — packages/security</h1><p class="sub">TryIt evidence showcase — monochrome architecture schematic (see evidence/README.md). Hover edges for labels.</p><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" width="940" height="560" viewBox="0 0 940 560">
+<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
+<rect width="940" height="560" fill="#ffffff"/>
+<text x="470.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">Security gate — packages/security</text>
+<line x1="210" y1="275" x2="300" y2="125" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<text x="255.0" y="194.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny by default</tspan></text>
+<line x1="450.0" y1="148" x2="450.0" y2="200" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<text x="450.0" y="168.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
+<line x1="450.0" y1="258" x2="450.0" y2="310" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<text x="450.0" y="278.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
+<line x1="600" y1="125" x2="680" y2="162" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<text x="640.0" y="137.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">ok</tspan></text>
+<path d="M 600 130 Q 640.0 260.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="640.0" y="254.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
+<path d="M 600 240 Q 640.0 315.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="640.0" y="309.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
+<path d="M 600 350 Q 640.0 370.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="640.0" y="364.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
+<rect x="40" y="240" width="170" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6" stroke-dasharray="6 5"/>
+<text x="125.0" y="271.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Untrusted request</text>
+<text x="125.0" y="290.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">bearer + image</text>
+<rect x="300" y="90" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="450.0" y="115.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">api-key-auth</text>
+<text x="450.0" y="134.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">constant-time verify · scope · tenant</text>
+<rect x="300" y="200" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="450.0" y="225.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">rate-limit</text>
+<text x="450.0" y="244.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">per-shopper + per-tenant window</text>
+<rect x="300" y="310" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="450.0" y="335.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">image-validation</text>
+<text x="450.0" y="354.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">magic-bytes · dimensions · size</text>
+<rect x="680" y="130" width="200" height="64" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
+<text x="780.0" y="158.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Admit</text>
+<text x="780.0" y="177.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">to cache / engine</text>
+<rect x="680" y="320" width="200" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
+<text x="780.0" y="351.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">audit-log</text>
+<text x="780.0" y="370.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">append-only · what/when/who</text>
+<text x="40" y="470" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Every gate fails closed: a missing/ambiguous check refuses. The actor logged is the shopper id — never the API key (no secret in the trail).</text>
+</svg></div></div></body></html>

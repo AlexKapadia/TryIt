@@ -108,6 +108,16 @@ describe('getJob', () => {
     expect(init!.method).toBe('GET');
   });
 
+  it('sends bearer auth on getJob so polling works against the authenticated read endpoint', async () => {
+    const fetchMock = fakeFetch(200, validJob) as ReturnType<typeof vi.fn>;
+    await client(fetchMock).getJob('job-1');
+    const init = fetchMock.mock.calls[0]![1]!;
+    const headers = init.headers as Record<string, string>;
+    // The now-authenticated GET /v1/tryons/:id requires the bearer key on every poll.
+    expect(headers.authorization).toBe('Bearer pk_test_123');
+    expect(init.method).toBe('GET');
+  });
+
   it('propagates a typed error code from getJob', async () => {
     const r = await client(
       fakeFetch(401, { code: 'UNAUTHORIZED', message: 'no', httpStatus: 401 }),

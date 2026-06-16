@@ -1,0 +1,18 @@
+# Evidence showcase — ANALYSIS-ONLY dependencies.
+#
+# These libraries are used SOLELY to generate the static evidence artifacts
+# (statistical plots, latency benchmarks, flow diagrams) under evidence/.
+# They are intentionally ISOLATED from every runtime manifest: nothing in
+# apps/, packages/, or services/ depends on them. Install them only into the
+# local, git-ignored evidence/.venv:
+#
+#   python -m venv evidence/.venv
+#   evidence/.venv/Scripts/python -m pip install -r evidence/requirements-analysis.txt
+#
+# Pinned to a known-good, widely-available baseline (Python 3.13 compatible).
+
+numpy==2.2.1
+pandas==2.2.3
+matplotlib==3.10.0
+plotly==5.24.1
+cairosvg==2.7.1

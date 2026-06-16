@@ -11,6 +11,12 @@
  */
 const nextConfig = {
   reactStrictMode: true,
+  // `standalone` makes `next build` emit a self-contained server (server.js plus
+  // a pruned node_modules) under .next/standalone for the slim production Docker
+  // image. Gated behind BUILD_STANDALONE: standalone output creates symlinks that
+  // fail with EPERM on Windows (no symlink privilege) and would break local builds
+  // and the live E2E. The Dockerfiles set BUILD_STANDALONE=1.
+  ...(process.env.BUILD_STANDALONE === '1' ? { output: 'standalone' } : {}),
   transpilePackages: [
     '@tryit/contracts',
     '@tryit/security',

@@ -9,7 +9,12 @@
  * tenant-namespaced cache on a hit; (7) on a miss route to a provider; (8) cache the result and
  * append an allow audit event. EVERY deny path also writes an audit event (deny/error) before
  * throwing a typed {@link PipelineError}. The result is wrapped in a terminal {@link TryOnJob}
- * (succeeded/failed) and stored so it can be fetched by id.
+ * (succeeded/failed) and stored so it can be fetched by id. Steps 6-8 (cache/route/store) and the
+ * pre-provider idempotency replay live in `pipeline-execute.ts` to keep each file focused.
+ *
+ * Idempotency: after authentication and before any provider call, a request carrying an
+ * `idempotencyKey` that matches a prior (tenant, key) job returns THAT job verbatim — no second
+ * provider call, no double-charge. The replay is post-auth, so it can never leak across tenants.
  *
  * Security invariants enforced here: deny-by-default at every gate; tenant isolation (the key's
  * tenant must equal the request tenant); no secret in the audit trail (the actor is the shopper
@@ -22,25 +27,28 @@ import {
   validateImageRef,
   type ApiKeyRecord,
 } from '@tryit/security';
-import { hashImageBytes, type JsonValue } from '@tryit/cache';
 import {
-  safeParseProviderId,
   type TryOnRequest,
-  type TryOnResult,
   type TryOnJob,
-  type ImageRef,
-  type ProviderId,
 } from '@tryit/contracts';
 import { type ImageRejectReason } from '@tryit/security';
-import { getRuntime, isKillSwitchEngaged, type Runtime } from './runtime';
+import { getRuntime, isKillSwitchEngaged } from './runtime';
 import { TRYON_SCOPE, type StoredTenant } from './tenant-store';
 import { PipelineError, sumTenantSpendUsd } from './pipeline-errors';
 import { buildTryOnAuditEvent } from './audit-events';
+import { lookupIdempotentJob, executeAndRecord } from './pipeline-execute';
 
 /** Inputs to one pipeline run: the parsed request plus the presented bearer plaintext. */
 export interface RunTryOnInput {
   readonly request: TryOnRequest;
   readonly apiKeyPlaintext: string;
+  /**
+   * Optional idempotency key (from the `idempotency-key` header or the request body). When a
+   * prior job exists for (tenantId, idempotencyKey) the pipeline returns THAT job instead of
+   * calling a provider again — cost control / no double-charge on a client retry. An absent key
+   * is the normal path (fail-open only on absence, never on a verified replay).
+   */
+  readonly idempotencyKey?: string;
 }
 
 /** Estimated marginal cost of the next non-cached call, used by the budget pre-check. */
@@ -53,18 +61,6 @@ function imageRejectToError(reason: ImageRejectReason): PipelineError {
     return new PipelineError('PAYLOAD_TOO_LARGE', 'image exceeds the maximum allowed size');
   }
   return new PipelineError('INVALID_INPUT', `image rejected: ${reason}`);
-}
-
-/**
- * Derive the person-image content hash for the cache key. base64 refs are hashed over their
- * decoded bytes (true content addressing); URL refs are hashed over the canonical url string so
- * the same remote image keys identically without us fetching it here (no SSRF at this seam).
- */
-function personImageHash(ref: ImageRef): string {
-  if (ref.kind === 'base64') {
-    return hashImageBytes(new Uint8Array(Buffer.from(ref.data, 'base64')));
-  }
-  return hashImageBytes(new Uint8Array(Buffer.from(`url:${ref.url}`, 'utf-8')));
 }
 
 /** Authenticate the presented key against the tenant's stored records (step 1, fail-closed). */
@@ -135,6 +131,14 @@ export async function runTryOn(input: RunTryOnInput): Promise<TryOnJob> {
     throw error;
   }
 
+  // Idempotency replay (post-auth, pre-provider): if this (tenant, key) already produced a job,
+  // return it verbatim — no second provider call, no double-charge. Only an AUTHENTICATED caller
+  // reaches this, so a replay can never leak another tenant's job (the index is tenant-scoped).
+  const replayed = lookupIdempotentJob(runtime, request.tenantId, input.idempotencyKey);
+  if (replayed !== undefined) {
+    return replayed;
+  }
+
   // Step 2: kill switch (global env OR tenant flag) -> halt all external calls.
   if (isKillSwitchEngaged(tenantConfig)) {
     deny(new PipelineError('KILL_SWITCH_ENGAGED', 'try-on is disabled by the kill switch'), 'deny');
@@ -169,84 +173,5 @@ export async function runTryOn(input: RunTryOnInput): Promise<TryOnJob> {
   }
 
   // Steps 6-8: cache lookup, provider route on miss, then cache-put + allow audit.
-  return executeAndRecord(runtime, request, requestId, actor, storedTenant);
-}
-
-/**
- * Run the cache/route/audit tail of the pipeline (steps 6-8) and build the terminal job.
- * Split out to keep each function within the file-size and single-responsibility bounds.
- */
-async function executeAndRecord(
-  runtime: Runtime,
-  request: TryOnRequest,
-  requestId: string,
-  actor: string,
-  storedTenant: StoredTenant,
-): Promise<TryOnJob> {
-  const imageHash = personImageHash(request.personImage);
-  const keyParts = {
-    tenantId: request.tenantId,
-    personImageHash: imageHash,
-    productId: request.productId,
-    params: (request.params ?? {}) as JsonValue,
-  };
-
-  let routeFailed = false;
-  // getOrCompute calls the compute fn exactly once on a miss, zero times on a hit.
-  const outcome = await runtime.resultCache.getOrCompute(keyParts, async () => {
-    const routed = await runtime.engine.route(request, storedTenant.config);
-    if (!routed.ok) {
-      routeFailed = true;
-      // fail-closed: a provider failure is a typed error, never a fabricated success.
-      throw new PipelineError(routed.error.code, routed.error.message);
-    }
-    return routed.result;
-  }).catch((error: unknown) => {
-    // On provider failure, record an error audit event and a failed job, then rethrow.
-    if (routeFailed && error instanceof PipelineError) {
-      runtime.auditSink.append(
-        buildTryOnAuditEvent({ tenantId: request.tenantId, actor, requestId, outcome: 'error' }),
-      );
-    }
-    throw error;
-  });
-
-  // On a hit the stored result carried cached:false; surface cached:true to the caller without
-  // re-billing. On a miss we keep the provider's real cost for budget accounting.
-  const result: TryOnResult = outcome.cached
-    ? { ...outcome.value, cached: true, costUsd: 0 }
-    : outcome.value;
-
-  // Step 8: append the allow audit event (with provider + real cost) for the spend ledger.
-  // result.provider is a free-form string on the contract; narrow it to a known ProviderId for
-  // the audit field, dropping it if somehow unrecognised (the event stays schema-valid).
-  const parsedProvider = safeParseProviderId(result.provider);
-  const provider: ProviderId | undefined = parsedProvider.success ? parsedProvider.data : undefined;
-  runtime.auditSink.append(
-    buildTryOnAuditEvent({
-      tenantId: request.tenantId,
-      actor,
-      requestId,
-      outcome: 'allow',
-      provider,
-      costUsd: outcome.cached ? 0 : outcome.value.costUsd,
-    }),
-  );
-
-  return storeSucceededJob(runtime, request, result);
-}
-
-/** Wrap a result in a `succeeded` {@link TryOnJob}, store it by id, and return it. */
-function storeSucceededJob(runtime: Runtime, request: TryOnRequest, result: TryOnResult): TryOnJob {
-  const now = new Date().toISOString();
-  const job: TryOnJob = {
-    jobId: randomUUID(),
-    status: 'succeeded',
-    request,
-    result,
-    createdAt: now,
-    updatedAt: now,
-  };
-  runtime.jobs.set(job.jobId, job);
-  return job;
+  return executeAndRecord(runtime, request, requestId, actor, storedTenant, input.idempotencyKey);
 }

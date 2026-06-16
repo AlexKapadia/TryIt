@@ -1,0 +1,136 @@
+# TryIt self-host stack.
+#
+# Run from the repo root so the build contexts resolve:
+#   docker compose -f infra/docker-compose.yml --env-file .env up
+#
+# Services:
+#   api        — @tryit/api Next.js server (port 3001), the public entrypoint.
+#   inference  — self-hosted FastAPI try-on service (port 8000), mock by default.
+#   redis      — rate-limit / cache backing store for production posture.
+#   demo-shop  — OPTIONAL storefront showcasing the widget (profile: demo).
+#
+# Secrets (e.g. FAL_KEY) come from the environment / .env file — never inlined
+# here. Copy infra/.env.example to .env at the repo root and edit it.
+
+name: tryit
+
+x-restart: &restart_policy unless-stopped
+
+services:
+  api:
+    build:
+      # Build from the repo root so the pnpm workspace install can see every
+      # package; the Dockerfile lives under the app.
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    image: tryit/api:local
+    restart: *restart_policy
+    ports:
+      - "${API_PORT:-3001}:3001"
+    environment:
+      NODE_ENV: "${NODE_ENV:-production}"
+      # Point the API at the in-network inference service (self-host try-on path).
+      TRYIT_INFERENCE_URL: "${TRYIT_INFERENCE_URL:-http://inference:8000}"
+      # Redis backs rate-limiting/caching in production (code adopts it over the
+      # in-memory store); the URL is wired now so no redeploy is needed later.
+      REDIS_URL: "${REDIS_URL:-redis://redis:6379}"
+      # Global kill-switch: 1 halts all external try-on calls (fail-closed). Default off.
+      TRYIT_KILL_SWITCH: "${TRYIT_KILL_SWITCH:-0}"
+      # Dev-only credential endpoint; MUST stay 0 in production (also gated by NODE_ENV).
+      TRYIT_DEV_DEMO: "${TRYIT_DEV_DEMO:-0}"
+      # Optional hosted-provider key. Leave empty to use only the self-host path.
+      FAL_KEY: "${FAL_KEY:-}"
+      # Comma-separated allowed CORS origins for the browser widget/storefront.
+      TRYIT_CORS_ORIGINS: "${TRYIT_CORS_ORIGINS:-}"
+    depends_on:
+      redis:
+        condition: service_healthy
+      inference:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3001/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks:
+      - tryit
+
+  inference:
+    build:
+      context: ../services/inference-py
+      dockerfile: Dockerfile
+      # To build the GPU/model image instead, set this to "model" (and supply a
+      # CUDA base + --gpus at run time). Default is the torch-free mock image.
+      args:
+        INSTALL_EXTRAS: "${INFERENCE_EXTRAS:-}"
+    image: tryit/inference:local
+    restart: *restart_policy
+    environment:
+      # mock = deterministic torch-free backend; set to "leffa" on a model image.
+      TRYIT_INFER_BACKEND: "${TRYIT_INFER_BACKEND:-mock}"
+      TRYIT_INFER_MAX_IMAGE_BYTES: "${TRYIT_INFER_MAX_IMAGE_BYTES:-8388608}"
+    # Not published to the host by default — only the API reaches it in-network.
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - tryit
+
+  redis:
+    image: redis:7-alpine
+    restart: *restart_policy
+    # Persist with append-only file so cached/rate-limit state survives restarts.
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    expose:
+      - "6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    networks:
+      - tryit
+
+  demo-shop:
+    # Optional: `docker compose --profile demo up` to include the storefront.
+    profiles: ["demo"]
+    build:
+      context: ..
+      dockerfile: apps/demo-shop/Dockerfile
+      args:
+        # Baked into the client bundle; point at the publicly reachable API URL.
+        NEXT_PUBLIC_TRYIT_API_URL: "${NEXT_PUBLIC_TRYIT_API_URL:-http://localhost:3001}"
+    image: tryit/demo-shop:local
+    restart: *restart_policy
+    ports:
+      - "${DEMO_PORT:-3002}:3002"
+    environment:
+      NODE_ENV: "${NODE_ENV:-production}"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3002/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    networks:
+      - tryit
+
+networks:
+  tryit:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local

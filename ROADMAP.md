@@ -35,9 +35,15 @@ service. Licence: MIT.
   (ATELIER storefront) embeds the widget SSR-safe; live Playwright E2E (17
   tests) drives the real browser through every flow + state and renders a real
   result image. build/typecheck/lint/test all green (turbo 16/16). Pushed.
-- [ ] **Gate 4 - Harden / Ship** PENDING. Mutation testing, security scans,
-  `evidence/` showcase (stats + PNG/HTML graphs + B&W flow diagrams),
-  self-host compose + IaC, docs, public-data validation, release.
+- [x] **Gate 4 - Harden / Ship** COMPLETE. Mutation testing (Stryker) on the
+  critical packages (security 92%, cache 94%, contracts 86%, engine 77%;
+  survivors killed, equivalents documented); CI adds dependency audit + live
+  E2E job; security hardening (authenticated + tenant-scoped job reads, server
+  idempotency, drop-in embed loader); `evidence/` showcase (7 B&W flow diagrams
+  + 4 stat graphs as PNG/HTML + measured latency + public-data validation);
+  self-host Docker/compose + Terraform skeleton + guide; consumer docs
+  (integration + API reference). build/typecheck/lint/test all green
+  (turbo 16/16 incl E2E; python 48). Pushed.
 
 ## How to resume
 

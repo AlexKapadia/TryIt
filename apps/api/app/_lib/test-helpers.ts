@@ -72,9 +72,33 @@ export function buildPostRequest(body: unknown, token: string | undefined, url =
   return new Request(url, { method: 'POST', headers, body: JSON.stringify(body) });
 }
 
-/** Build a GET Request with an optional origin (for CORS assertions). */
-export function buildGetRequest(url: string, origin = 'https://shop.test'): Request {
-  return new Request(url, { method: 'GET', headers: { origin } });
+/** Build a POST Request that also carries an `idempotency-key` header (cost-control replay). */
+export function buildIdempotentPostRequest(
+  body: unknown,
+  token: string,
+  idempotencyKey: string,
+  url = 'https://api.test/v1/tryons',
+): Request {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    origin: 'https://shop.test',
+    Authorization: `Bearer ${token}`,
+    'idempotency-key': idempotencyKey,
+  };
+  return new Request(url, { method: 'POST', headers, body: JSON.stringify(body) });
+}
+
+/** Build a GET Request with an optional bearer token and origin (for CORS assertions). */
+export function buildGetRequest(
+  url: string,
+  token?: string,
+  origin = 'https://shop.test',
+): Request {
+  const headers: Record<string, string> = { origin };
+  if (token !== undefined) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return new Request(url, { method: 'GET', headers });
 }
 
 /** Build an OPTIONS preflight Request. */

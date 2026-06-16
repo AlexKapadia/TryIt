@@ -37,6 +37,33 @@ describe('createTryOn', () => {
     expect(job).toEqual(QUEUED_JOB);
   });
 
+  it('sends the idempotency-key header when a key is supplied (cost-control parity with widget)', async () => {
+    const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
+    await c.createTryOn(VALID_REQUEST, 'idem-123');
+    const call = cap.calls[0]!;
+    expect(call.headers['idempotency-key']).toBe('idem-123');
+    // The bearer credential is still present and unchanged alongside the idempotency header.
+    expect(call.headers['Authorization']).toBe('Bearer sk-secret-123');
+  });
+
+  it('omits the idempotency-key header when no key is supplied', async () => {
+    const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
+    await c.createTryOn(VALID_REQUEST);
+    expect(cap.calls[0]!.headers['idempotency-key']).toBeUndefined();
+  });
+
+  it('treats a blank/whitespace idempotency key as absent (never indexes an empty key)', async () => {
+    const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
+    await c.createTryOn(VALID_REQUEST, '   ');
+    expect(cap.calls[0]!.headers['idempotency-key']).toBeUndefined();
+  });
+
+  it('trims surrounding whitespace from a supplied idempotency key', async () => {
+    const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
+    await c.createTryOn(VALID_REQUEST, '  idem-trim  ');
+    expect(cap.calls[0]!.headers['idempotency-key']).toBe('idem-trim');
+  });
+
   it('applies the category default before sending when the caller omits it', async () => {
     const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
     // Cast: deliberately omit a defaulted field to prove the SDK fills it via the parser.

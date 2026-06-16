@@ -20,6 +20,33 @@ export async function OPTIONS(request: Request): Promise<Response> {
   return preflightResponse(request);
 }
 
+/** Read a non-empty, trimmed `idempotency-key` header, or `undefined` when absent/blank. */
+function readHeaderIdempotencyKey(request: Request): string | undefined {
+  const raw = request.headers.get('idempotency-key');
+  if (raw === null) {
+    return undefined;
+  }
+  const trimmed = raw.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+/**
+ * Read a non-empty `idempotencyKey` field from the parsed body, when the caller put it there
+ * instead of (or as well as) the header. Only a string is honoured; any other shape is ignored
+ * so a hostile body cannot smuggle a non-string into the index key.
+ */
+function readBodyIdempotencyKey(body: unknown): string | undefined {
+  if (typeof body !== 'object' || body === null) {
+    return undefined;
+  }
+  const value = (body as Record<string, unknown>)['idempotencyKey'];
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
 /** Handle a try-on request: authenticate, run the pipeline, return the job or a typed error. */
 export async function POST(request: Request): Promise<Response> {
   // Extract the bearer key first; a missing credential is refused before any body parsing.
@@ -31,16 +58,26 @@ export async function POST(request: Request): Promise<Response> {
 
   // Parse the JSON body; a malformed body or schema violation is a 400 INVALID_INPUT.
   let request_;
+  let bodyIdempotencyKey: string | undefined;
   try {
     const body: unknown = await request.json();
+    bodyIdempotencyKey = readBodyIdempotencyKey(body);
     request_ = parseTryOnRequest(body);
   } catch {
     // fail-closed: never echo the offending body or a Zod stack — just the typed error.
     return apiErrorResponse(makeApiError('INVALID_INPUT', 'request body is not a valid try-on request'), request);
   }
 
+  // Idempotency key: the `idempotency-key` header wins; else a body field, if present. A retry
+  // carrying the same key returns the prior job instead of re-running the provider (cost control).
+  const idempotencyKey = readHeaderIdempotencyKey(request) ?? bodyIdempotencyKey;
+
   try {
-    const job = await runTryOn({ request: request_, apiKeyPlaintext });
+    const job = await runTryOn(
+      idempotencyKey !== undefined
+        ? { request: request_, apiKeyPlaintext, idempotencyKey }
+        : { request: request_, apiKeyPlaintext },
+    );
     return jsonResponse(job, 200, request);
   } catch (error) {
     if (isPipelineError(error)) {

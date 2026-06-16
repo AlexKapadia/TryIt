@@ -1,0 +1,59 @@
+{
+  "_provenance": {
+    "description": "PUBLIC-DATA-ONLY validation fixture. A synthetic-but-public-SHAPED Shopify Admin product payload modelled on the publicly-documented Shopify Admin REST API product schema (developer docs are public; field names and structure are public knowledge). Product titles, vendors, prices and image URLs are illustrative placeholders for generic apparel items that any public storefront might list. NO real PII, NO private customer data, NO confidential deal documents, NO scraped private catalog. Image URLs point at a neutral picsum placeholder host and are not load-bearing — the connector validates URL SHAPE (https) without fetching.",
+    "schema_reference": "Shopify Admin REST API: GET /admin/api/<version>/products.json — public developer documentation",
+    "boundary": "public-data only; no PII",
+    "intentional_bad_records": [
+      "id 1004 has an http:// (non-HTTPS) image — must be SKIPPED (SSRF / plaintext-fetch guard)",
+      "id 1005 has an empty images array — must be SKIPPED (a product with no image cannot be tried on)",
+      "the sixth record has no id/title — must be SKIPPED (mandatory identity missing)"
+    ]
+  },
+  "products": [
+    {
+      "id": 1001,
+      "title": "Classic Cotton Crew T-Shirt",
+      "vendor": "Generic Apparel Co",
+      "product_type": "apparel",
+      "images": [
+        { "src": "https://picsum.photos/seed/tee-front/800/1000" },
+        { "src": "https://picsum.photos/seed/tee-back/800/1000" }
+      ],
+      "variants": [{ "price": "24.00", "sku": "TEE-CREW-M" }]
+    },
+    {
+      "id": 1002,
+      "title": "Slim-Fit Denim Jacket",
+      "vendor": "Generic Apparel Co",
+      "product_type": "apparel",
+      "images": [{ "src": "https://picsum.photos/seed/denim-jacket/800/1000" }],
+      "variants": [{ "price": "89.50", "sku": "JKT-DENIM-L" }]
+    },
+    {
+      "id": 1003,
+      "title": "Merino Wool Knit Sweater",
+      "vendor": "Generic Apparel Co",
+      "images": [{ "src": "https://picsum.photos/seed/wool-sweater/800/1000" }],
+      "variants": [{ "price": "120.00", "sku": "SWT-MERINO-S" }]
+    },
+    {
+      "id": 1004,
+      "title": "Insecure Image Hoodie",
+      "vendor": "Generic Apparel Co",
+      "images": [{ "src": "http://insecure.example.com/hoodie.jpg" }],
+      "variants": [{ "price": "55.00", "sku": "HDY-BAD-M" }]
+    },
+    {
+      "id": 1005,
+      "title": "No Image Chino Trousers",
+      "vendor": "Generic Apparel Co",
+      "images": [],
+      "variants": [{ "price": "60.00", "sku": "CHN-NOIMG-32" }]
+    },
+    {
+      "title": "Missing Identity Item",
+      "images": [{ "src": "https://picsum.photos/seed/orphan/800/1000" }],
+      "variants": [{ "price": "10.00" }]
+    }
+  ]
+}

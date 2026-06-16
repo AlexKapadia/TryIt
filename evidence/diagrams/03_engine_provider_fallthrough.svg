@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560">
+<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
+<rect width="1000" height="560" fill="#ffffff"/>
+<text x="500.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">Engine — packages/engine (router fallthrough)</text>
+<line x1="200" y1="265" x2="260" y2="265" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<line x1="480" y1="265" x2="560" y2="99" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
+<text x="520.0" y="176.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">try cheapest</tspan></text>
+<line x1="590" y1="128" x2="590" y2="156" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="590.0" y="136.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
+<line x1="590" y1="214" x2="590" y2="242" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="590.0" y="222.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
+<line x1="590" y1="300" x2="590" y2="328" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="590.0" y="308.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
+<line x1="590" y1="386" x2="590" y2="414" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
+<text x="590.0" y="394.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
+<rect x="40" y="230" width="160" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6" stroke-dasharray="6 5"/>
+<text x="120.0" y="261.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">TryOnRequest</text>
+<text x="120.0" y="280.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">+ TenantConfig</text>
+<rect x="260" y="230" width="220" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
+<text x="370.0" y="261.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">order candidates</text>
+<text x="370.0" y="280.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">allow-list · priority · cost</text>
+<rect x="560" y="70" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="680.0" y="95.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">fal</text>
+<text x="680.0" y="114.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted · primary</text>
+<rect x="560" y="156" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="680.0" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">replicate</text>
+<text x="680.0" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted</text>
+<rect x="560" y="242" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="680.0" y="267.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">google-vto</text>
+<text x="680.0" y="286.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted</text>
+<rect x="560" y="328" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="680.0" y="353.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">self-hosted</text>
+<text x="680.0" y="372.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">inference-py</text>
+<rect x="560" y="414" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
+<text x="680.0" y="439.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">deterministic</text>
+<text x="680.0" y="458.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">terminal · never fails</text>
+<text x="40" y="480" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Each provider re-validated before use. The deterministic provider is the guaranteed last resort, so the engine answers fail-closed and never hard-errors</text>
+<text x="40" y="496" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">unless even the fallback is excluded.</text>
+</svg>

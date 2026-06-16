@@ -1,0 +1,64 @@
+{
+  "boundary": "public-data only; no PII",
+  "provenance": "Shopify Admin REST API: GET /admin/api/<version>/products.json — public developer documentation",
+  "catalog": {
+    "input_records": 6,
+    "normalised_count": 3,
+    "normalised": [
+      {
+        "id": "1001",
+        "title": "Classic Cotton Crew T-Shirt",
+        "category": "apparel",
+        "imageRefs": [
+          "https://picsum.photos/seed/tee-front/800/1000",
+          "https://picsum.photos/seed/tee-back/800/1000"
+        ],
+        "price": 24
+      },
+      {
+        "id": "1002",
+        "title": "Slim-Fit Denim Jacket",
+        "category": "apparel",
+        "imageRefs": [
+          "https://picsum.photos/seed/denim-jacket/800/1000"
+        ],
+        "price": 89.5
+      },
+      {
+        "id": "1003",
+        "title": "Merino Wool Knit Sweater",
+        "category": "apparel",
+        "imageRefs": [
+          "https://picsum.photos/seed/wool-sweater/800/1000"
+        ],
+        "price": 120
+      }
+    ],
+    "skipped": [
+      {
+        "ref": "1004",
+        "reason": "imageRef must use https"
+      },
+      {
+        "ref": "1005",
+        "reason": "at least one imageRef required"
+      },
+      {
+        "ref": "unknown",
+        "reason": "Required"
+      }
+    ]
+  },
+  "contract": {
+    "accepted": true,
+    "productId": "1001",
+    "error": null
+  },
+  "checks": {
+    "catalog_normalised_three_valid": true,
+    "catalog_skipped_three_bad": true,
+    "no_http_image_admitted": true,
+    "tryon_contract_accepts_public_input": true
+  },
+  "passed": true
+}
