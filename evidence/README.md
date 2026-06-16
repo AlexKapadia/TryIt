@@ -71,8 +71,7 @@ python -m venv evidence/.venv
 evidence/.venv/Scripts/python -m pip install -r evidence/requirements-analysis.txt
 
 # 2. Diagrams (HTML + PNG):
-evidence/.venv/Scripts/python evidence/scripts/generate_whole_system_diagram.py
-evidence/.venv/Scripts/python evidence/scripts/generate_component_diagrams.py
+evidence/.venv/Scripts/python evidence/scripts/generate_flow_diagrams.py  # needs Graphviz 'dot'
 
 # 3. Suite graphs (test counts + coverage):
 evidence/.venv/Scripts/python evidence/scripts/generate_suite_graphs.py
@@ -92,9 +91,7 @@ The latency benchmark and the validation invoke `node` against the packages' bui
 
 | Script | Output |
 | --- | --- |
-| `scripts/bw_diagram_toolkit.py` | shared monochrome SVG→PNG/HTML primitives |
-| `scripts/generate_whole_system_diagram.py` | `diagrams/00_*` |
-| `scripts/generate_component_diagrams.py` | `diagrams/01_*`…`06_*` |
+| `scripts/generate_flow_diagrams.py` | all 7 `diagrams/*` (Graphviz dot, auto-layout, B&W) |
 | `scripts/evidence_data.py` | canonical test-count / coverage source of truth |
 | `scripts/generate_suite_graphs.py` | `graphs/test_counts_*`, `graphs/coverage_*` |
 | `scripts/measure_pipeline_latency.mjs` | MEASURED latency samples (Node → real TS dist) |
