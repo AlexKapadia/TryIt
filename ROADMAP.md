@@ -17,9 +17,12 @@ service. Licence: MIT.
 
 - [x] **Gate 0 - Bootstrap** COMPLETE. Monorepo scaffolded and pushed (turbo +
   pnpm workspaces, CI skeleton, base TS config, this CLAUDE.md contract).
-- [ ] **Gate 1 - Contracts / Design** PENDING. Peer-reviewed research under
-  `docs/research/` (one folder per paper), zod data contracts between stages,
-  STRIDE threat model, and the per-project UI design brief.
+- [x] **Gate 1 - Contracts / Design** COMPLETE. Research library under
+  `docs/research/` (5 papers + method survey + provider survey + decision:
+  CatVTON method for self-host, Leffa MIT benchmark, fal.ai hosted default,
+  caching as primary cost lever); full zod data contracts in
+  `packages/contracts` (118 tests, 100% coverage); STRIDE `docs/threat-model.md`;
+  UI design brief in `docs/design/`. Pushed.
 - [ ] **Gate 2 - Build** PENDING. Implement packages test-first: security,
   engine + providers, cache, catalog-connectors, inference-py, widget + sdk.
 - [ ] **Gate 3 - Integrate** PENDING. Wire components end-to-end, build the
