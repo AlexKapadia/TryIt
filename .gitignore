@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+.env
+.env.*
+*.log
+.DS_Store
+playwright-report/
+test-results/
+__pycache__/
+.venv/
+.next/
+.stryker-tmp/
+
+# TS build info
+*.tsbuildinfo
