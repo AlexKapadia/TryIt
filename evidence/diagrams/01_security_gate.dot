@@ -1,0 +1,34 @@
+digraph G {
+  rankdir=TB;
+  splines=polyline;
+  label="Security gate — ordered fail-closed steps (pipeline.ts)";
+  bgcolor="white";
+  fontname="Helvetica";
+  labelloc="t";
+  fontsize=18;
+  fontcolor="#111111";
+  pad="0.35";
+  nodesep=0.55;
+  ranksep=0.75;
+  node [shape=box style="rounded,filled" fillcolor="white" color="#111111" fontcolor="#111111" fontname="Helvetica" fontsize=12 penwidth=1.4 margin="0.20,0.12"];
+  edge [color="#111111" fontcolor="#444444" fontname="Helvetica" fontsize=10 penwidth=1.3 arrowsize=0.8];
+
+  req   [label="Untrusted request\nBearer + image(s)" style="rounded,dashed,filled" fillcolor="white"];
+
+  s1 [label="1 · verifyApiKey\nconstant-time · scope · tenant"];
+  s2 [label="2 · Kill-switch\nglobal OR tenant flag"];
+  s3 [label="3 · Image validation\nperson (+ optional garment)"];
+  s4 [label="4 · Rate limit\nper-shopper + per-tenant window"];
+  s5 [label="5 · Budget guard\nspend + $0.05 ≤ monthly budget"];
+
+  admit [label="Admit\n→ idempotency / cache / engine" fillcolor="#f4f4f4" penwidth=2.4];
+  deny  [label="DENY (fail-closed)\n+ append-only audit event\nactor = shopperId (never the key)" fillcolor="#ececec" penwidth=1.2 fontcolor="#444444"];
+
+  req -> s1 -> s2 -> s3 -> s4 -> s5 -> admit [label="pass"];
+  s1 -> deny [label="401" color="#777777" fontcolor="#777777" style=dashed];
+  s2 -> deny [label="kill-switch" color="#777777" fontcolor="#777777" style=dashed];
+  s3 -> deny [label="invalid / too large" color="#777777" fontcolor="#777777" style=dashed];
+  s4 -> deny [label="429 retryAfter" color="#777777" fontcolor="#777777" style=dashed];
+  s5 -> deny [label="budget exceeded" color="#777777" fontcolor="#777777" style=dashed];
+  { rank=same; admit; deny; }
+}

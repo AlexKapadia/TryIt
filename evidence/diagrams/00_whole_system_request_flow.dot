@@ -1,0 +1,58 @@
+digraph G {
+  rankdir=TB;
+  splines=polyline;
+  label="TryIt — whole-system request flow";
+  bgcolor="white";
+  fontname="Helvetica";
+  labelloc="t";
+  fontsize=18;
+  fontcolor="#111111";
+  pad="0.35";
+  nodesep=0.55;
+  ranksep=0.75;
+  node [shape=box style="rounded,filled" fillcolor="white" color="#111111" fontcolor="#111111" fontname="Helvetica" fontsize=12 penwidth=1.4 margin="0.20,0.12"];
+  edge [color="#111111" fontcolor="#444444" fontname="Helvetica" fontsize=10 penwidth=1.3 arrowsize=0.8];
+
+  shopper [label="Shopper widget\n(packages/widget)" style="rounded,dashed,filled" fillcolor="white"];
+
+  subgraph cluster_post {
+    label="POST /v1/tryons   (Bearer auth)";
+    fontname="Helvetica"; fontsize=12; fontcolor="#444444"; color="#cccccc"; style="rounded";
+
+    gate   [label="SECURITY GATE\n(fail-closed, ordered)" fillcolor="#f4f4f4" penwidth=2.4];
+    idem   [label="Idempotency check\n(tenant-scoped replay)"];
+    cache  [label="Tenant-namespaced CACHE\ngetOrCompute(keyParts)"];
+    router [label="ENGINE router\n(cost / priority order)"];
+    audit  [label="Append-only AUDIT\nallow / deny / error" fillcolor="#f4f4f4" penwidth=2.4];
+    result [label="Result\n{ jobId, succeeded, result }" fillcolor="#f4f4f4" penwidth=2.4];
+  }
+
+  subgraph cluster_prov {
+    label="Providers (terminal fallback guaranteed)";
+    fontname="Helvetica"; fontsize=12; fontcolor="#444444"; color="#cccccc"; style="rounded";
+    rank=same;
+    fal    [label="fal"];
+    self   [label="self-hosted"];
+    det    [label="deterministic\nfallback" fillcolor="#f4f4f4" penwidth=2.0];
+  }
+
+  poll   [label="GET /v1/tryons/:id\nBearer auth + tenant-scoped\n(404 on miss / wrong tenant)" style="rounded,dashed,filled" fillcolor="white"];
+
+  shopper -> gate;
+  gate   -> idem    [label="pass"];
+  gate   -> audit   [label="deny" color="#777777" fontcolor="#777777" style=dashed];
+  idem   -> result  [label="replay hit" color="#777777" fontcolor="#777777" style=dashed];
+  idem   -> cache   [label="miss"];
+  cache  -> result  [label="cache hit\ncost $0" color="#777777" fontcolor="#777777" style=dashed];
+  cache  -> router  [label="miss → compute"];
+  router -> fal;
+  router -> self;
+  router -> det     [label="fall through"];
+  fal    -> audit   [label="result"];
+  self   -> audit   [style=invis];
+  det    -> audit   [style=invis];
+  audit  -> result;
+  result -> shopper [label="202 / job" constraint=false color="#777777" fontcolor="#777777"];
+  shopper -> poll   [label="poll" style=dashed];
+  poll   -> shopper [label="job state" style=dashed color="#777777" fontcolor="#777777" constraint=false];
+}

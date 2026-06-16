@@ -1,39 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560">
-<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
-<rect width="1000" height="560" fill="#ffffff"/>
-<text x="500.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">Engine — packages/engine (router fallthrough)</text>
-<line x1="200" y1="265" x2="260" y2="265" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<line x1="480" y1="265" x2="560" y2="99" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="520.0" y="176.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">try cheapest</tspan></text>
-<line x1="590" y1="128" x2="590" y2="156" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="590.0" y="136.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
-<line x1="590" y1="214" x2="590" y2="242" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="590.0" y="222.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
-<line x1="590" y1="300" x2="590" y2="328" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="590.0" y="308.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
-<line x1="590" y1="386" x2="590" y2="414" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="590.0" y="394.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">error/timeout</tspan></text>
-<rect x="40" y="230" width="160" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6" stroke-dasharray="6 5"/>
-<text x="120.0" y="261.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">TryOnRequest</text>
-<text x="120.0" y="280.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">+ TenantConfig</text>
-<rect x="260" y="230" width="220" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="370.0" y="261.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">order candidates</text>
-<text x="370.0" y="280.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">allow-list · priority · cost</text>
-<rect x="560" y="70" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="680.0" y="95.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">fal</text>
-<text x="680.0" y="114.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted · primary</text>
-<rect x="560" y="156" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="680.0" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">replicate</text>
-<text x="680.0" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted</text>
-<rect x="560" y="242" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="680.0" y="267.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">google-vto</text>
-<text x="680.0" y="286.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">hosted</text>
-<rect x="560" y="328" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="680.0" y="353.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">self-hosted</text>
-<text x="680.0" y="372.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">inference-py</text>
-<rect x="560" y="414" width="240" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="680.0" y="439.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">deterministic</text>
-<text x="680.0" y="458.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">terminal · never fails</text>
-<text x="40" y="480" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Each provider re-validated before use. The deterministic provider is the guaranteed last resort, so the engine answers fail-closed and never hard-errors</text>
-<text x="40" y="496" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">unless even the fallback is excluded.</text>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 15.0.0 (20260523.1842)
+ -->
+<!-- Title: G Pages: 1 -->
+<svg width="490pt" height="657pt"
+ viewBox="0.00 0.00 490.00 657.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 631.57)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-631.57 465,-631.57 465,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="219.9" y="-585.27" font-family="Helvetica,sans-Serif" font-size="18.00" fill="#111111">Engine provider fall&#45;through (router.ts)</text>
+<!-- in -->
+<g id="node1" class="node">
+<title>in</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" stroke-dasharray="5,2" d="M385.55,-577.37C385.55,-577.37 232.25,-577.37 232.25,-577.37 226.25,-577.37 220.25,-571.37 220.25,-565.37 220.25,-565.37 220.25,-553.37 220.25,-553.37 220.25,-547.37 226.25,-541.37 232.25,-541.37 232.25,-541.37 385.55,-541.37 385.55,-541.37 391.55,-541.37 397.55,-547.37 397.55,-553.37 397.55,-553.37 397.55,-565.37 397.55,-565.37 397.55,-571.37 391.55,-577.37 385.55,-577.37"/>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-555.1" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">route(request, tenant.config)</text>
+</g>
+<!-- ord -->
+<g id="node2" class="node">
+<title>ord</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M394.92,-486.37C394.92,-486.37 222.87,-486.37 222.87,-486.37 216.87,-486.37 210.87,-480.37 210.87,-474.37 210.87,-474.37 210.87,-438.34 210.87,-438.34 210.87,-432.34 216.87,-426.34 222.87,-426.34 222.87,-426.34 394.92,-426.34 394.92,-426.34 400.92,-426.34 406.92,-432.34 406.92,-438.34 406.92,-438.34 406.92,-474.37 406.92,-474.37 406.92,-480.37 400.92,-486.37 394.92,-486.37"/>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-466.33" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">orderCandidates</text>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-452.08" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">allow&#45;list ∩ routing ∩ registered</text>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-437.83" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">sort: costUsd ↑, priority ↑, id ↑</text>
+</g>
+<!-- in&#45;&gt;ord -->
+<g id="edge1" class="edge">
+<title>in&#45;&gt;ord</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M308.9,-540.77C308.9,-528.63 308.9,-511.98 308.9,-496.75"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="311.7,-496.97 308.9,-488.97 306.1,-496.97 311.7,-496.97"/>
+</g>
+<!-- fal -->
+<g id="node3" class="node">
+<title>fal</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M375.8,-371.34C375.8,-371.34 242,-371.34 242,-371.34 236,-371.34 230,-365.34 230,-359.34 230,-359.34 230,-337.56 230,-337.56 230,-331.56 236,-325.56 242,-325.56 242,-325.56 375.8,-325.56 375.8,-325.56 381.8,-325.56 387.8,-331.56 387.8,-337.56 387.8,-337.56 387.8,-359.34 387.8,-359.34 387.8,-365.34 381.8,-371.34 375.8,-371.34"/>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-351.3" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">fal</text>
+<text xml:space="preserve" text-anchor="middle" x="308.9" y="-337.05" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(cheapest / first allowed)</text>
+</g>
+<!-- ord&#45;&gt;fal -->
+<g id="edge2" class="edge">
+<title>ord&#45;&gt;fal</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M308.9,-425.85C308.9,-412.06 308.9,-395.62 308.9,-381.52"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="311.7,-381.71 308.9,-373.71 306.1,-381.71 311.7,-381.71"/>
+</g>
+<!-- self -->
+<g id="node4" class="node">
+<title>self</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M280.55,-259.56C280.55,-259.56 217.25,-259.56 217.25,-259.56 211.25,-259.56 205.25,-253.56 205.25,-247.56 205.25,-247.56 205.25,-235.56 205.25,-235.56 205.25,-229.56 211.25,-223.56 217.25,-223.56 217.25,-223.56 280.55,-223.56 280.55,-223.56 286.55,-223.56 292.55,-229.56 292.55,-235.56 292.55,-235.56 292.55,-247.56 292.55,-247.56 292.55,-253.56 286.55,-259.56 280.55,-259.56"/>
+<text xml:space="preserve" text-anchor="middle" x="248.9" y="-237.28" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">self&#45;hosted</text>
+</g>
+<!-- fal&#45;&gt;self -->
+<g id="edge4" class="edge">
+<title>fal&#45;&gt;self</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M278.95,-325.01C261.8,-312.16 243.65,-298.56 243.65,-298.56 243.65,-298.56 243.65,-286.56 243.65,-286.56 243.65,-286.56 244.56,-278.95 245.62,-270.05"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="248.39,-270.43 246.56,-262.16 242.83,-269.77 248.39,-270.43"/>
+<text xml:space="preserve" text-anchor="middle" x="291.27" y="-289.06" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">error / timeout → next</text>
+</g>
+<!-- ok -->
+<g id="node6" class="node">
+<title>ok</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M427.8,-45.78C427.8,-45.78 168,-45.78 168,-45.78 162,-45.78 156,-39.78 156,-33.78 156,-33.78 156,-12 156,-12 156,-6 162,0 168,0 168,0 427.8,0 427.8,0 433.8,0 439.8,-6 439.8,-12 439.8,-12 439.8,-33.78 439.8,-33.78 439.8,-39.78 433.8,-45.78 427.8,-45.78"/>
+<text xml:space="preserve" text-anchor="middle" x="297.9" y="-25.74" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Success</text>
+<text xml:space="preserve" text-anchor="middle" x="297.9" y="-11.49" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">stamp provider · latencyMs · cost · cached=false</text>
+</g>
+<!-- fal&#45;&gt;ok -->
+<g id="edge3" class="edge">
+<title>fal&#45;&gt;ok</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M325.42,-325.01C334.89,-312.16 344.9,-298.56 344.9,-298.56 344.9,-298.56 344.9,-286.56 344.9,-286.56 344.9,-286.56 320.9,-72.78 320.9,-72.78 320.9,-72.78 317.26,-65.04 312.88,-55.73"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="315.5,-54.73 309.56,-48.68 310.44,-57.11 315.5,-54.73"/>
+<text xml:space="preserve" text-anchor="middle" x="339.81" y="-187.06" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">ok</text>
+</g>
+<!-- det -->
+<g id="node5" class="node">
+<title>det</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M205.8,-157.56C205.8,-157.56 12,-157.56 12,-157.56 6,-157.56 0,-151.56 0,-145.56 0,-145.56 0,-123.78 0,-123.78 0,-117.78 6,-111.78 12,-111.78 12,-111.78 205.8,-111.78 205.8,-111.78 211.8,-111.78 217.8,-117.78 217.8,-123.78 217.8,-123.78 217.8,-145.56 217.8,-145.56 217.8,-151.56 211.8,-157.56 205.8,-157.56"/>
+<text xml:space="preserve" text-anchor="middle" x="108.9" y="-137.52" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">DeterministicProvider</text>
+<text xml:space="preserve" text-anchor="middle" x="108.9" y="-123.27" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">terminal fallback (always succeeds)</text>
+</g>
+<!-- self&#45;&gt;det -->
+<g id="edge6" class="edge">
+<title>self&#45;&gt;det</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M217.92,-222.92C196.43,-210.68 171.65,-196.56 171.65,-196.56 171.65,-196.56 155.37,-180.77 139.4,-165.27"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="141.73,-163.62 134.04,-160.06 137.83,-167.64 141.73,-163.62"/>
+<text xml:space="preserve" text-anchor="middle" x="219.28" y="-187.06" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">error / timeout → next</text>
+</g>
+<!-- self&#45;&gt;ok -->
+<g id="edge5" class="edge">
+<title>self&#45;&gt;ok</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M258.52,-222.92C265.2,-210.68 272.9,-196.56 272.9,-196.56 272.9,-196.56 285.92,-106.61 293.17,-56.55"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="295.92,-57.09 294.3,-48.77 290.38,-56.28 295.92,-57.09"/>
+<text xml:space="preserve" text-anchor="middle" x="290.23" y="-131.17" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">ok</text>
+</g>
+<!-- det&#45;&gt;ok -->
+<g id="edge7" class="edge">
+<title>det&#45;&gt;ok</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M148.52,-110.66C178.01,-93.53 218.4,-70.07 249.75,-51.86"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="251.12,-54.3 256.63,-47.86 248.31,-49.46 251.12,-54.3"/>
+<text xml:space="preserve" text-anchor="middle" x="214.32" y="-75.28" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">ok</text>
+</g>
+</g>
 </svg>

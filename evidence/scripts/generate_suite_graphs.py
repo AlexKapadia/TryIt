@@ -1,7 +1,7 @@
 """generate_suite_graphs — "the suite is the evidence": test-count and coverage charts.
 
 Produces, as BOTH a static PNG (matplotlib) and an interactive HTML (plotly):
-  * test_counts_per_package  — bar of tests per package + the 614 total annotated.
+  * test_counts_per_package  — bar of tests per package + the 755 total annotated.
   * coverage_per_package     — bar of line coverage per package with the 90/85 gate lines.
 
 Monochrome/greyscale to match the diagram set. Run from the evidence venv:

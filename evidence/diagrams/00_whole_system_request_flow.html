@@ -1,94 +1,199 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>TryIt — POST /v1/tryons end-to-end request flow — TryIt evidence</title><meta name="viewport" content="width=device-width, initial-scale=1"/><style>html,body{margin:0;background:#fafafa;color:#111;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;}.wrap{max-width:1180px;margin:0 auto;padding:32px 20px;}h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:#444;text-transform:uppercase;margin:0 0 4px;}p.sub{margin:0 0 20px;color:#888;font-size:13px;}.frame{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}.frame svg{width:100%;height:auto;display:block;}</style></head><body><div class="wrap"><h1>TryIt — POST /v1/tryons end-to-end request flow</h1><p class="sub">TryIt evidence showcase — monochrome architecture schematic (see evidence/README.md). Hover edges for labels.</p><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720">
-<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
-<rect width="1160" height="720" fill="#ffffff"/>
-<text x="580.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">TryIt — POST /v1/tryons end-to-end request flow</text>
-<line x1="115" y1="154" x2="115" y2="200" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<line x1="115" y1="264" x2="115" y2="320" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<line x1="190" y1="355" x2="290" y2="119.0" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="240.0" y="231.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">request</tspan></text>
-<line x1="405.0" y1="148" x2="405.0" y2="176" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="405.0" y="156.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="405.0" y1="234" x2="405.0" y2="262" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="405.0" y="242.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="405.0" y1="320" x2="405.0" y2="348" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="405.0" y="328.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="405.0" y1="406" x2="405.0" y2="434" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="405.0" y="414.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="520" y1="463.0" x2="620" y2="200" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="570.0" y="325.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">all gates pass</tspan></text>
-<line x1="730" y1="220" x2="730" y2="300" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="730.0" y="254.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">MISS</tspan></text>
-<path d="M 840 185 Q 925.0 155.0 1010 185" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="925.0" y="149.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">HIT</tspan></text>
-<line x1="840" y1="335" x2="900" y2="330" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="870.0" y="326.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">try</tspan></text>
-<line x1="920" y1="360" x2="920" y2="386" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="920.0" y="367.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">on error/timeout</tspan></text>
-<line x1="920" y1="446" x2="920" y2="472" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="920.0" y="453.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">on error/timeout</tspan></text>
-<path d="M 1010 532 Q 925.0 577.0 840 502" fill="none" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="925.0" y="571.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">result</tspan></text>
-<line x1="730" y1="470" x2="730" y2="220" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="730.0" y="339.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">cache-put</tspan></text>
-<path d="M 620 502 Q 405.0 511.0 190 360" fill="none" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="405.0" y="505.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">200 OK</tspan></text>
-<path d="M 290 119.0 Q 347.5 359.5 405 560" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="347.5" y="353.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny</tspan></text>
-<path d="M 290 205.0 Q 347.5 402.5 405 560" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="347.5" y="396.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny</tspan></text>
-<path d="M 290 291.0 Q 347.5 445.5 405 560" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="347.5" y="439.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny</tspan></text>
-<path d="M 290 377.0 Q 347.5 488.5 405 560" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="347.5" y="482.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny</tspan></text>
-<path d="M 290 463.0 Q 347.5 531.5 405 560" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="347.5" y="525.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny</tspan></text>
-<path d="M 620 505 Q 570.0 567.5 520 590" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="570.0" y="561.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">allow</tspan></text>
-<rect x="40" y="90" width="150" height="64" rx="32.0" ry="32.0" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="115.0" y="118.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Shopper</text>
-<text x="115.0" y="137.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">uploads selfie</text>
-<rect x="40" y="200" width="150" height="64" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="115.0" y="228.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Widget / SDK</text>
-<text x="115.0" y="247.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">&lt;tryit-widget&gt;</text>
-<rect x="40" y="320" width="150" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="115.0" y="351.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">API route</text>
-<text x="115.0" y="370.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">POST /v1/tryons</text>
-<rect x="290" y="90" width="230" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="405.0" y="115.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">1 · Auth</text>
-<text x="405.0" y="134.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">verify bearer key + scope</text>
-<rect x="290" y="176" width="230" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="405.0" y="201.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">2 · Kill switch</text>
-<text x="405.0" y="220.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">global / tenant halt</text>
-<rect x="290" y="262" width="230" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="405.0" y="287.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">3 · Image validate</text>
-<text x="405.0" y="306.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">magic-bytes + dimensions</text>
-<rect x="290" y="348" width="230" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="405.0" y="373.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">4 · Rate limit</text>
-<text x="405.0" y="392.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">per-shopper + per-tenant</text>
-<rect x="290" y="434" width="230" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="405.0" y="459.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">5 · Budget</text>
-<text x="405.0" y="478.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">monthly USD cap</text>
-<rect x="620" y="150" width="220" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="730.0" y="181.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Tenant cache</text>
-<text x="730.0" y="200.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">content-addressed key</text>
-<rect x="620" y="300" width="220" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="730.0" y="331.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Engine router</text>
-<text x="730.0" y="350.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">cheapest / priority first</text>
-<rect x="900" y="300" width="220" height="60" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="1010.0" y="326.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">fal (hosted)</text>
-<text x="1010.0" y="345.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">primary</text>
-<rect x="900" y="386" width="220" height="60" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="1010.0" y="412.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">self-hosted</text>
-<text x="1010.0" y="431.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">inference-py</text>
-<rect x="900" y="472" width="220" height="60" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="1010.0" y="498.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">deterministic</text>
-<text x="1010.0" y="517.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">terminal fallback</text>
-<rect x="620" y="470" width="220" height="64" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="730.0" y="498.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Result image</text>
-<text x="730.0" y="517.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">stamped: provider, latency</text>
-<rect x="290" y="560" width="230" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="405.0" y="591.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Audit log</text>
-<text x="405.0" y="610.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">append-only · allow/deny/error</text>
-<text x="40" y="660" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Fail-closed: any gate that cannot verify refuses and writes a deny event. Solid = primary path · dashed grey = fallthrough / async.</text>
-<text x="40" y="685" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Source of truth: apps/api/app/_lib/pipeline.ts (runTryOn). Tenant isolation enforced in the cache key + auth scope.</text>
-</svg></div></div></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>TryIt — whole-system request flow — TryIt evidence</title><meta name="viewport" content="width=device-width, initial-scale=1"/><style>html,body{margin:0;background:#fafafa;color:#111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}.wrap{max-width:1180px;margin:0 auto;padding:32px 20px;}h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:#444;text-transform:uppercase;margin:0 0 4px;}p.sub{margin:0 0 20px;color:#888;font-size:13px;}.frame{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04);}.frame svg{width:100%;height:auto;display:block;}</style></head><body><div class="wrap"><h1>TryIt — whole-system request flow</h1><p class="sub">TryIt evidence showcase — monochrome architecture schematic (auto-laid-out via Graphviz; accurate to current code). See evidence/README.md.</p><div class="frame"><svg width="646pt" height="775pt"
+ viewBox="0.00 0.00 646.00 775.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 750.28)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-750.28 620.3,-750.28 620.3,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="297.55" y="-703.98" font-family="Helvetica,sans-Serif" font-size="18.00" fill="#111111">TryIt — whole&#45;system request flow</text>
+<g id="clust1" class="cluster">
+<title>cluster_post</title>
+<path fill="white" stroke="#cccccc" d="M20,-131.03C20,-131.03 358,-131.03 358,-131.03 364,-131.03 370,-137.03 370,-143.03 370,-143.03 370,-591.3 370,-591.3 370,-597.3 364,-603.3 358,-603.3 358,-603.3 20,-603.3 20,-603.3 14,-603.3 8,-597.3 8,-591.3 8,-591.3 8,-143.03 8,-143.03 8,-137.03 14,-131.03 20,-131.03"/>
+<text xml:space="preserve" text-anchor="middle" x="189" y="-587.9" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#444444">POST /v1/tryons &#160;&#160;(Bearer auth)</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_prov</title>
+<path fill="white" stroke="#cccccc" d="M253,-8C253,-8 563,-8 563,-8 569,-8 575,-14 575,-20 575,-20 575,-80.03 575,-80.03 575,-86.03 569,-92.03 563,-92.03 563,-92.03 253,-92.03 253,-92.03 247,-92.03 241,-86.03 241,-80.03 241,-80.03 241,-20 241,-20 241,-14 247,-8 253,-8"/>
+<text xml:space="preserve" text-anchor="middle" x="408" y="-76.63" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#444444">Providers (terminal fallback guaranteed)</text>
+</g>
+<!-- shopper -->
+<g id="node1" class="node">
+<title>shopper</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" stroke-dasharray="5,2" d="M378.15,-696.08C378.15,-696.08 275.85,-696.08 275.85,-696.08 269.85,-696.08 263.85,-690.08 263.85,-684.08 263.85,-684.08 263.85,-662.3 263.85,-662.3 263.85,-656.3 269.85,-650.3 275.85,-650.3 275.85,-650.3 378.15,-650.3 378.15,-650.3 384.15,-650.3 390.15,-656.3 390.15,-662.3 390.15,-662.3 390.15,-684.08 390.15,-684.08 390.15,-690.08 384.15,-696.08 378.15,-696.08"/>
+<text xml:space="preserve" text-anchor="middle" x="327" y="-676.04" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Shopper widget</text>
+<text xml:space="preserve" text-anchor="middle" x="327" y="-661.79" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(packages/widget)</text>
+</g>
+<!-- gate -->
+<g id="node2" class="node">
+<title>gate</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M338.15,-573.05C338.15,-573.05 223.85,-573.05 223.85,-573.05 217.85,-573.05 211.85,-567.05 211.85,-561.05 211.85,-561.05 211.85,-539.27 211.85,-539.27 211.85,-533.27 217.85,-527.27 223.85,-527.27 223.85,-527.27 338.15,-527.27 338.15,-527.27 344.15,-527.27 350.15,-533.27 350.15,-539.27 350.15,-539.27 350.15,-561.05 350.15,-561.05 350.15,-567.05 344.15,-573.05 338.15,-573.05"/>
+<text xml:space="preserve" text-anchor="middle" x="281" y="-553.01" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">SECURITY GATE</text>
+<text xml:space="preserve" text-anchor="middle" x="281" y="-538.76" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(fail&#45;closed, ordered)</text>
+</g>
+<!-- shopper&#45;&gt;gate -->
+<g id="edge1" class="edge">
+<title>shopper&#45;&gt;gate</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M318.46,-649.71C311.34,-630.98 301.11,-604.07 293.14,-583.1"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="295.81,-582.26 290.35,-575.78 290.58,-584.25 295.81,-582.26"/>
+</g>
+<!-- poll -->
+<g id="node11" class="node">
+<title>poll</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" stroke-dasharray="5,2" d="M557.77,-580.18C557.77,-580.18 402.23,-580.18 402.23,-580.18 396.23,-580.18 390.23,-574.18 390.23,-568.18 390.23,-568.18 390.23,-532.15 390.23,-532.15 390.23,-526.15 396.23,-520.15 402.23,-520.15 402.23,-520.15 557.77,-520.15 557.77,-520.15 563.77,-520.15 569.77,-526.15 569.77,-532.15 569.77,-532.15 569.77,-568.18 569.77,-568.18 569.77,-574.18 563.77,-580.18 557.77,-580.18"/>
+<text xml:space="preserve" text-anchor="middle" x="480" y="-560.14" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">GET /v1/tryons/:id</text>
+<text xml:space="preserve" text-anchor="middle" x="480" y="-545.89" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Bearer auth + tenant&#45;scoped</text>
+<text xml:space="preserve" text-anchor="middle" x="480" y="-531.64" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(404 on miss / wrong tenant)</text>
+</g>
+<!-- shopper&#45;&gt;poll -->
+<g id="edge16" class="edge">
+<title>shopper&#45;&gt;poll</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" stroke-dasharray="5,2" d="M340.57,-649.87C351.13,-632.49 364,-611.3 364,-611.3 364,-611.3 380,-603.3 380,-603.3 380,-603.3 395.71,-595.11 414.68,-585.22"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="415.74,-587.83 421.54,-581.65 413.15,-582.86 415.74,-587.83"/>
+<text xml:space="preserve" text-anchor="middle" x="371.5" y="-613.8" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">poll</text>
+</g>
+<!-- idem -->
+<g id="node3" class="node">
+<title>idem</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M241.03,-454.15C241.03,-454.15 116.97,-454.15 116.97,-454.15 110.97,-454.15 104.97,-448.15 104.97,-442.15 104.97,-442.15 104.97,-420.37 104.97,-420.37 104.97,-414.37 110.97,-408.37 116.97,-408.37 116.97,-408.37 241.03,-408.37 241.03,-408.37 247.03,-408.37 253.03,-414.37 253.03,-420.37 253.03,-420.37 253.03,-442.15 253.03,-442.15 253.03,-448.15 247.03,-454.15 241.03,-454.15"/>
+<text xml:space="preserve" text-anchor="middle" x="179" y="-434.11" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Idempotency check</text>
+<text xml:space="preserve" text-anchor="middle" x="179" y="-419.86" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(tenant&#45;scoped replay)</text>
+</g>
+<!-- gate&#45;&gt;idem -->
+<g id="edge2" class="edge">
+<title>gate&#45;&gt;idem</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M257.41,-526.38C241.35,-510.87 223,-493.15 223,-493.15 223,-493.15 211.9,-477.79 200.85,-462.5"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="203.24,-461.03 196.29,-456.18 198.7,-464.31 203.24,-461.03"/>
+<text xml:space="preserve" text-anchor="middle" x="233.5" y="-483.65" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- audit -->
+<g id="node6" class="node">
+<title>audit</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M350.4,-381.37C350.4,-381.37 237.6,-381.37 237.6,-381.37 231.6,-381.37 225.6,-375.37 225.6,-369.37 225.6,-369.37 225.6,-347.59 225.6,-347.59 225.6,-341.59 231.6,-335.59 237.6,-335.59 237.6,-335.59 350.4,-335.59 350.4,-335.59 356.4,-335.59 362.4,-341.59 362.4,-347.59 362.4,-347.59 362.4,-369.37 362.4,-369.37 362.4,-375.37 356.4,-381.37 350.4,-381.37"/>
+<text xml:space="preserve" text-anchor="middle" x="294" y="-361.33" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Append&#45;only AUDIT</text>
+<text xml:space="preserve" text-anchor="middle" x="294" y="-347.08" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">allow / deny / error</text>
+</g>
+<!-- gate&#45;&gt;audit -->
+<g id="edge3" class="edge">
+<title>gate&#45;&gt;audit</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M282.57,-526.28C284.86,-492.82 289.14,-430.35 291.77,-392.08"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="294.54,-392.58 292.29,-384.4 288.95,-392.19 294.54,-392.58"/>
+<text xml:space="preserve" text-anchor="middle" x="296.08" y="-483.65" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">deny</text>
+</g>
+<!-- cache -->
+<g id="node4" class="node">
+<title>cache</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M188.03,-308.59C188.03,-308.59 27.97,-308.59 27.97,-308.59 21.97,-308.59 15.97,-302.59 15.97,-296.59 15.97,-296.59 15.97,-274.81 15.97,-274.81 15.97,-268.81 21.97,-262.81 27.97,-262.81 27.97,-262.81 188.03,-262.81 188.03,-262.81 194.03,-262.81 200.03,-268.81 200.03,-274.81 200.03,-274.81 200.03,-296.59 200.03,-296.59 200.03,-302.59 194.03,-308.59 188.03,-308.59"/>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-288.55" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Tenant&#45;namespaced CACHE</text>
+<text xml:space="preserve" text-anchor="middle" x="108" y="-274.3" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">getOrCompute(keyParts)</text>
+</g>
+<!-- idem&#45;&gt;cache -->
+<g id="edge5" class="edge">
+<title>idem&#45;&gt;cache</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M167.91,-407.83C155.92,-383.6 136.75,-344.83 123.33,-317.69"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="125.94,-316.67 119.89,-310.74 120.92,-319.15 125.94,-316.67"/>
+<text xml:space="preserve" text-anchor="middle" x="164.51" y="-354.98" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">miss</text>
+</g>
+<!-- result -->
+<g id="node7" class="node">
+<title>result</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M350.15,-184.81C350.15,-184.81 205.85,-184.81 205.85,-184.81 199.85,-184.81 193.85,-178.81 193.85,-172.81 193.85,-172.81 193.85,-151.03 193.85,-151.03 193.85,-145.03 199.85,-139.03 205.85,-139.03 205.85,-139.03 350.15,-139.03 350.15,-139.03 356.15,-139.03 362.15,-145.03 362.15,-151.03 362.15,-151.03 362.15,-172.81 362.15,-172.81 362.15,-178.81 356.15,-184.81 350.15,-184.81"/>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-164.77" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Result</text>
+<text xml:space="preserve" text-anchor="middle" x="278" y="-150.52" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">{ jobId, succeeded, result }</text>
+</g>
+<!-- idem&#45;&gt;result -->
+<g id="edge4" class="edge">
+<title>idem&#45;&gt;result</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M188.06,-407.95C208.81,-356.88 258,-235.81 258,-235.81 258,-235.81 263.72,-214.97 269.04,-195.58"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="271.73,-196.34 271.15,-187.88 266.33,-194.85 271.73,-196.34"/>
+<text xml:space="preserve" text-anchor="middle" x="266.02" y="-282.2" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">replay hit</text>
+</g>
+<!-- router -->
+<g id="node5" class="node">
+<title>router</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M141.9,-184.81C141.9,-184.81 32.1,-184.81 32.1,-184.81 26.1,-184.81 20.1,-178.81 20.1,-172.81 20.1,-172.81 20.1,-151.03 20.1,-151.03 20.1,-145.03 26.1,-139.03 32.1,-139.03 32.1,-139.03 141.9,-139.03 141.9,-139.03 147.9,-139.03 153.9,-145.03 153.9,-151.03 153.9,-151.03 153.9,-172.81 153.9,-172.81 153.9,-178.81 147.9,-184.81 141.9,-184.81"/>
+<text xml:space="preserve" text-anchor="middle" x="87" y="-164.77" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">ENGINE router</text>
+<text xml:space="preserve" text-anchor="middle" x="87" y="-150.52" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">(cost / priority order)</text>
+</g>
+<!-- cache&#45;&gt;router -->
+<g id="edge7" class="edge">
+<title>cache&#45;&gt;router</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M102.38,-262.26C99.16,-249.41 95.75,-235.81 95.75,-235.81 95.75,-235.81 93.19,-214.45 90.83,-194.85"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="93.64,-194.75 89.91,-187.14 88.08,-195.42 93.64,-194.75"/>
+<text xml:space="preserve" text-anchor="middle" x="132.88" y="-220.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">miss → compute</text>
+</g>
+<!-- cache&#45;&gt;result -->
+<g id="edge6" class="edge">
+<title>cache&#45;&gt;result</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M139.18,-262.36C166.99,-242.45 207.84,-213.18 238.04,-191.55"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="239.39,-194.02 244.26,-187.09 236.13,-189.47 239.39,-194.02"/>
+<text xml:space="preserve" text-anchor="middle" x="228.1" y="-226.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">cache hit</text>
+<text xml:space="preserve" text-anchor="middle" x="228.1" y="-214.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">cost $0</text>
+</g>
+<!-- fal -->
+<g id="node8" class="node">
+<title>fal</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M427,-56.89C427,-56.89 397,-56.89 397,-56.89 391,-56.89 385,-50.89 385,-44.89 385,-44.89 385,-32.89 385,-32.89 385,-26.89 391,-20.89 397,-20.89 397,-20.89 427,-20.89 427,-20.89 433,-20.89 439,-26.89 439,-32.89 439,-32.89 439,-44.89 439,-44.89 439,-50.89 433,-56.89 427,-56.89"/>
+<text xml:space="preserve" text-anchor="middle" x="412" y="-34.62" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">fal</text>
+</g>
+<!-- router&#45;&gt;fal -->
+<g id="edge8" class="edge">
+<title>router&#45;&gt;fal</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M152.49,-138.42C164.85,-134.17 174,-131.03 174,-131.03 174,-131.03 365,-92.03 365,-92.03 365,-92.03 377.42,-78.25 389.5,-64.85"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="391.49,-66.82 394.77,-59 387.33,-63.07 391.49,-66.82"/>
+</g>
+<!-- self -->
+<g id="node9" class="node">
+<title>self</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M554.65,-56.89C554.65,-56.89 491.35,-56.89 491.35,-56.89 485.35,-56.89 479.35,-50.89 479.35,-44.89 479.35,-44.89 479.35,-32.89 479.35,-32.89 479.35,-26.89 485.35,-20.89 491.35,-20.89 491.35,-20.89 554.65,-20.89 554.65,-20.89 560.65,-20.89 566.65,-26.89 566.65,-32.89 566.65,-32.89 566.65,-44.89 566.65,-44.89 566.65,-50.89 560.65,-56.89 554.65,-56.89"/>
+<text xml:space="preserve" text-anchor="middle" x="523" y="-34.62" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">self&#45;hosted</text>
+</g>
+<!-- router&#45;&gt;self -->
+<g id="edge9" class="edge">
+<title>router&#45;&gt;self</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M152.49,-138.42C164.85,-134.17 174,-131.03 174,-131.03 174,-131.03 328,-112.03 328,-112.03 328,-112.03 459,-92.03 459,-92.03 459,-92.03 476.87,-77.47 493.73,-63.74"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="495.37,-66.01 499.81,-58.78 491.84,-61.67 495.37,-66.01"/>
+</g>
+<!-- det -->
+<g id="node10" class="node">
+<title>det</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2" d="M333.15,-61.78C333.15,-61.78 260.85,-61.78 260.85,-61.78 254.85,-61.78 248.85,-55.78 248.85,-49.78 248.85,-49.78 248.85,-28 248.85,-28 248.85,-22 254.85,-16 260.85,-16 260.85,-16 333.15,-16 333.15,-16 339.15,-16 345.15,-22 345.15,-28 345.15,-28 345.15,-49.78 345.15,-49.78 345.15,-55.78 339.15,-61.78 333.15,-61.78"/>
+<text xml:space="preserve" text-anchor="middle" x="297" y="-41.74" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">deterministic</text>
+<text xml:space="preserve" text-anchor="middle" x="297" y="-27.49" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">fallback</text>
+</g>
+<!-- router&#45;&gt;det -->
+<g id="edge10" class="edge">
+<title>router&#45;&gt;det</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M126.01,-138.44C160.85,-118.36 212.01,-88.87 249.28,-67.39"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="250.25,-70.06 255.78,-63.64 247.45,-65.21 250.25,-70.06"/>
+<text xml:space="preserve" text-anchor="middle" x="216" y="-102.53" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">fall through</text>
+</g>
+<!-- audit&#45;&gt;result -->
+<g id="edge14" class="edge">
+<title>audit&#45;&gt;result</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M310.95,-334.47C320.28,-321.79 330,-308.59 330,-308.59 330,-308.59 330,-262.81 330,-262.81 330,-262.81 309.58,-223.59 294.34,-194.3"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="296.89,-193.14 290.71,-187.33 291.92,-195.72 296.89,-193.14"/>
+</g>
+<!-- result&#45;&gt;shopper -->
+<g id="edge15" class="edge">
+<title>result&#45;&gt;shopper</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" d="M354.26,-185.93C396.27,-198.61 440,-211.81 440,-211.81 440,-211.81 590,-520.15 590,-520.15 590,-520.15 590,-603.3 590,-603.3 590,-603.3 435,-611.3 435,-611.3 435,-611.31 404.08,-628.74 375.33,-644.95"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="374.22,-642.36 368.62,-648.73 376.97,-647.24 374.22,-642.36"/>
+<text xml:space="preserve" text-anchor="middle" x="576.35" y="-427.76" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">202 / job</text>
+</g>
+<!-- fal&#45;&gt;audit -->
+<g id="edge11" class="edge">
+<title>fal&#45;&gt;audit</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M412.19,-57.46C412.48,-83.95 413,-131.03 413,-131.03 413,-131.03 413,-184.81 413,-184.81 413,-184.81 400,-235.81 400,-235.81 400,-235.81 379,-308.59 379,-308.59 379,-308.59 361.59,-318.6 342.53,-329.57"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="341.26,-327.07 335.72,-333.49 344.05,-331.92 341.26,-327.07"/>
+<text xml:space="preserve" text-anchor="middle" x="417.97" y="-220.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">result</text>
+</g>
+<!-- self&#45;&gt;audit -->
+<!-- det&#45;&gt;audit -->
+<!-- poll&#45;&gt;shopper -->
+<g id="edge17" class="edge">
+<title>poll&#45;&gt;shopper</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M442.72,-580.72C417.59,-600.64 389,-623.3 389,-623.3 389,-623.3 376.73,-632.98 363.1,-643.73"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="361.55,-641.38 357,-648.53 365.02,-645.78 361.55,-641.38"/>
+<text xml:space="preserve" text-anchor="middle" x="420.96" y="-613.8" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">job state</text>
+</g>
+</g>
+</svg>
+</div></div></body></html>

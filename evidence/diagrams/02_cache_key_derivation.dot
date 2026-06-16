@@ -1,0 +1,34 @@
+digraph G {
+  rankdir=TB;
+  splines=polyline;
+  label="Cache key derivation — tenant-namespaced (cache-key.ts)";
+  bgcolor="white";
+  fontname="Helvetica";
+  labelloc="t";
+  fontsize=18;
+  fontcolor="#111111";
+  pad="0.35";
+  nodesep=0.55;
+  ranksep=0.75;
+  node [shape=box style="rounded,filled" fillcolor="white" color="#111111" fontcolor="#111111" fontname="Helvetica" fontsize=12 penwidth=1.4 margin="0.20,0.12"];
+  edge [color="#111111" fontcolor="#444444" fontname="Helvetica" fontsize=10 penwidth=1.3 arrowsize=0.8];
+
+  dom    [label="KEY_DOMAIN\n\"tryit/cache/v1\""];
+  tenant [label="tenantId" fillcolor="#f4f4f4" penwidth=2.0];
+  img    [label="personImageHash\n(SHA-256 of image bytes)"];
+  prod   [label="productId"];
+  params [label="canonical params\n(sorted-key JSON)"];
+
+  hash   [label="SHA-256\nlength-prefixed fields\nhashField = len ':' utf8bytes" fillcolor="#f4f4f4" penwidth=2.4];
+  digest [label="hex digest"];
+  key    [label="CACHE KEY\nprefixSafe(tenantId) ':' digest" fillcolor="#f4f4f4" penwidth=2.4];
+
+  dom -> hash;
+  tenant -> hash [label="folded into hash"];
+  img -> hash;
+  prod -> hash;
+  params -> hash;
+  hash -> digest;
+  digest -> key;
+  tenant -> key [label="+ prefix (escape % :)\ntenant isolation" color="#777777" fontcolor="#777777" style=dashed];
+}

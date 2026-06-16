@@ -12,7 +12,7 @@ Nothing here is part of the runtime. All plotting/diagram dependencies are isola
 
 | Claim | Evidence | Figure |
 | --- | --- | --- |
-| The suite is the evidence | `graphs/test_counts_per_package.*` | **614 automated tests** across 10 packages |
+| The suite is the evidence | `graphs/test_counts_per_package.*` | **755 automated tests** across 11 packages |
 | Coverage clears the gates | `graphs/coverage_per_package.*` | every package **95.3–100%** line cov vs **90% / 85%** gates |
 | Fast deterministic fallback (**MEASURED**) | `graphs/latency_distribution.*` | deterministic provider **p50 14.3 µs · p95 28.8 µs · p99 68.3 µs** (n=20k) |
 | Fast cache-key derivation (**MEASURED**) | `graphs/latency_distribution.*` | **p50 46.2 µs · p95 72.8 µs · p99 130.3 µs** (n=20k) |
@@ -40,7 +40,7 @@ whole system. Each is grounded in its source package.
 | `06_inference_py_backend_selection` | FastAPI backend selection (Leffa / mock), validation fail-closed |
 
 ### `graphs/` — statistical & performance evidence (HTML + PNG each)
-- `test_counts_per_package` — 614 tests across the 10 suites.
+- `test_counts_per_package` — 755 tests across the 11 suites.
 - `coverage_per_package` — line coverage vs the 90% line / 85% branch CI gates.
 - `latency_distribution` — **MEASURED** per-op latency histograms with p50/p95/p99 markers.
 - `cost_vs_cache_hit_rate` — **MODELLED** provider spend vs cache hit-rate at 1/5/10M req/day.

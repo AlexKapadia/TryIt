@@ -25,14 +25,15 @@ class PackageStats:
 # Ordered roughly along the data flow: contracts -> security/cache/engine -> connectors
 # -> sdk/widget -> api -> inference -> e2e.
 PACKAGES: tuple[PackageStats, ...] = (
-    PackageStats("contracts", 124, 100.0, "contracts"),
-    PackageStats("security", 73, 99.1, "security"),
-    PackageStats("cache", 47, 100.0, "platform"),
-    PackageStats("engine", 69, 98.7, "platform"),
+    PackageStats("contracts", 131, 100.0, "contracts"),
+    PackageStats("security", 163, 99.1, "security"),
+    PackageStats("cache", 51, 100.0, "platform"),
+    PackageStats("engine", 75, 98.7, "platform"),
     PackageStats("catalog-connectors", 56, 97.8, "platform"),
-    PackageStats("sdk-node", 44, 99.4, "client"),
-    PackageStats("widget", 114, 96.2, "client"),
-    PackageStats("api", 22, 95.3, "service"),
+    PackageStats("sdk-node", 48, 99.4, "client"),
+    PackageStats("widget", 115, 96.2, "client"),
+    PackageStats("demo-shop", 12, 95.3, "client"),
+    PackageStats("api", 39, 95.3, "service"),
     PackageStats("inference-py", 48, 97.0, "service"),
     PackageStats("e2e", 17, float("nan"), "e2e"),  # browser flow assertions, not line-covered
 )

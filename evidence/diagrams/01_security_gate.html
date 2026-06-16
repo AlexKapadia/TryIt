@@ -1,38 +1,143 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Security gate — packages/security — TryIt evidence</title><meta name="viewport" content="width=device-width, initial-scale=1"/><style>html,body{margin:0;background:#fafafa;color:#111;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;}.wrap{max-width:1180px;margin:0 auto;padding:32px 20px;}h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:#444;text-transform:uppercase;margin:0 0 4px;}p.sub{margin:0 0 20px;color:#888;font-size:13px;}.frame{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);}.frame svg{width:100%;height:auto;display:block;}</style></head><body><div class="wrap"><h1>Security gate — packages/security</h1><p class="sub">TryIt evidence showcase — monochrome architecture schematic (see evidence/README.md). Hover edges for labels.</p><div class="frame"><svg xmlns="http://www.w3.org/2000/svg" width="940" height="560" viewBox="0 0 940 560">
-<defs><marker id="arrowInk" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#111111"/></marker><marker id="arrowGrey" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" fill="#888888"/></marker></defs>
-<rect width="940" height="560" fill="#ffffff"/>
-<text x="470.0" y="38" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#111111">Security gate — packages/security</text>
-<line x1="210" y1="275" x2="300" y2="125" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="255.0" y="194.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny by default</tspan></text>
-<line x1="450.0" y1="148" x2="450.0" y2="200" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="450.0" y="168.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="450.0" y1="258" x2="450.0" y2="310" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="450.0" y="278.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">pass</tspan></text>
-<line x1="600" y1="125" x2="680" y2="162" stroke="#111111" stroke-width="1.6" marker-end="url(#arrowInk)"/>
-<text x="640.0" y="137.5" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#111111"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">ok</tspan></text>
-<path d="M 600 130 Q 640.0 260.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="640.0" y="254.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
-<path d="M 600 240 Q 640.0 315.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="640.0" y="309.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
-<path d="M 600 350 Q 640.0 370.0 680 350" fill="none" stroke="#888888" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrowGrey)"/>
-<text x="640.0" y="364.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10.5" fill="#888888"><tspan dx="0" dy="0" style="paint-order:stroke;stroke:#ffffff;stroke-width:4px">deny -&gt; event</tspan></text>
-<rect x="40" y="240" width="170" height="70" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6" stroke-dasharray="6 5"/>
-<text x="125.0" y="271.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Untrusted request</text>
-<text x="125.0" y="290.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">bearer + image</text>
-<rect x="300" y="90" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="450.0" y="115.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">api-key-auth</text>
-<text x="450.0" y="134.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">constant-time verify · scope · tenant</text>
-<rect x="300" y="200" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="450.0" y="225.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">rate-limit</text>
-<text x="450.0" y="244.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">per-shopper + per-tenant window</text>
-<rect x="300" y="310" width="300" height="58" rx="10" ry="10" fill="#ffffff" stroke="#111111" stroke-width="1.6"/>
-<text x="450.0" y="335.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">image-validation</text>
-<text x="450.0" y="354.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">magic-bytes · dimensions · size</text>
-<rect x="680" y="130" width="200" height="64" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="780.0" y="158.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">Admit</text>
-<text x="780.0" y="177.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">to cache / engine</text>
-<rect x="680" y="320" width="200" height="70" rx="10" ry="10" fill="#f4f4f4" stroke="#111111" stroke-width="2.4"/>
-<text x="780.0" y="351.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#111111">audit-log</text>
-<text x="780.0" y="370.0" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#888888">append-only · what/when/who</text>
-<text x="40" y="470" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" font-style="italic" fill="#888888">Every gate fails closed: a missing/ambiguous check refuses. The actor logged is the shopper id — never the API key (no secret in the trail).</text>
-</svg></div></div></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Security gate — ordered fail-closed steps — TryIt evidence</title><meta name="viewport" content="width=device-width, initial-scale=1"/><style>html,body{margin:0;background:#fafafa;color:#111;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;}.wrap{max-width:1180px;margin:0 auto;padding:32px 20px;}h1{font-size:15px;font-weight:600;letter-spacing:.02em;color:#444;text-transform:uppercase;margin:0 0 4px;}p.sub{margin:0 0 20px;color:#888;font-size:13px;}.frame{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.04);}.frame svg{width:100%;height:auto;display:block;}</style></head><body><div class="wrap"><h1>Security gate — ordered fail-closed steps</h1><p class="sub">TryIt evidence showcase — monochrome architecture schematic (auto-laid-out via Graphviz; accurate to current code). See evidence/README.md.</p><div class="frame"><svg width="682pt" height="810pt"
+ viewBox="0.00 0.00 682.00 810.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(25.2 784.91)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-25.2,25.2 -25.2,-784.91 657.12,-784.91 657.12,25.2 -25.2,25.2"/>
+<text xml:space="preserve" text-anchor="middle" x="315.96" y="-738.61" font-family="Helvetica,sans-Serif" font-size="18.00" fill="#111111">Security gate — ordered fail&#45;closed steps (pipeline.ts)</text>
+<!-- req -->
+<g id="node1" class="node">
+<title>req</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" stroke-dasharray="5,2" d="M589.55,-730.71C589.55,-730.71 489.5,-730.71 489.5,-730.71 483.5,-730.71 477.5,-724.71 477.5,-718.71 477.5,-718.71 477.5,-696.93 477.5,-696.93 477.5,-690.93 483.5,-684.93 489.5,-684.93 489.5,-684.93 589.55,-684.93 589.55,-684.93 595.55,-684.93 601.55,-690.93 601.55,-696.93 601.55,-696.93 601.55,-718.71 601.55,-718.71 601.55,-724.71 595.55,-730.71 589.55,-730.71"/>
+<text xml:space="preserve" text-anchor="middle" x="539.52" y="-710.67" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Untrusted request</text>
+<text xml:space="preserve" text-anchor="middle" x="539.52" y="-696.42" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Bearer + image(s)</text>
+</g>
+<!-- s1 -->
+<g id="node2" class="node">
+<title>s1</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M619.92,-618.93C619.92,-618.93 459.12,-618.93 459.12,-618.93 453.12,-618.93 447.12,-612.93 447.12,-606.93 447.12,-606.93 447.12,-585.15 447.12,-585.15 447.12,-579.15 453.12,-573.15 459.12,-573.15 459.12,-573.15 619.92,-573.15 619.92,-573.15 625.92,-573.15 631.92,-579.15 631.92,-585.15 631.92,-585.15 631.92,-606.93 631.92,-606.93 631.92,-612.93 625.92,-618.93 619.92,-618.93"/>
+<text xml:space="preserve" text-anchor="middle" x="539.52" y="-598.89" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">1 · verifyApiKey</text>
+<text xml:space="preserve" text-anchor="middle" x="539.52" y="-584.64" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">constant&#45;time · scope · tenant</text>
+</g>
+<!-- req&#45;&gt;s1 -->
+<g id="edge1" class="edge">
+<title>req&#45;&gt;s1</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M539.52,-684.34C539.52,-668.5 539.52,-647.06 539.52,-629.39"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="542.33,-629.46 539.53,-621.46 536.73,-629.46 542.33,-629.46"/>
+<text xml:space="preserve" text-anchor="middle" x="550.02" y="-648.43" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- s2 -->
+<g id="node3" class="node">
+<title>s2</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M532.17,-507.15C532.17,-507.15 414.88,-507.15 414.88,-507.15 408.88,-507.15 402.88,-501.15 402.88,-495.15 402.88,-495.15 402.88,-473.37 402.88,-473.37 402.88,-467.37 408.88,-461.37 414.88,-461.37 414.88,-461.37 532.17,-461.37 532.17,-461.37 538.17,-461.37 544.17,-467.37 544.17,-473.37 544.17,-473.37 544.17,-495.15 544.17,-495.15 544.17,-501.15 538.17,-507.15 532.17,-507.15"/>
+<text xml:space="preserve" text-anchor="middle" x="473.52" y="-487.11" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">2 · Kill&#45;switch</text>
+<text xml:space="preserve" text-anchor="middle" x="473.52" y="-472.86" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">global OR tenant flag</text>
+</g>
+<!-- s1&#45;&gt;s2 -->
+<g id="edge2" class="edge">
+<title>s1&#45;&gt;s2</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M526.01,-572.56C516.22,-556.28 502.87,-534.07 492.08,-516.13"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="494.56,-514.81 488.04,-509.4 489.76,-517.7 494.56,-514.81"/>
+<text xml:space="preserve" text-anchor="middle" x="519" y="-536.65" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- deny -->
+<g id="node8" class="node">
+<title>deny</title>
+<path fill="#ececec" stroke="#111111" stroke-width="1.2" d="M488.92,-60.03C488.92,-60.03 310.12,-60.03 310.12,-60.03 304.12,-60.03 298.12,-54.03 298.12,-48.03 298.12,-48.03 298.12,-12 298.12,-12 298.12,-6 304.12,0 310.12,0 310.12,0 488.92,0 488.92,0 494.92,0 500.92,-6 500.92,-12 500.92,-12 500.92,-48.03 500.92,-48.03 500.92,-54.03 494.92,-60.03 488.92,-60.03"/>
+<text xml:space="preserve" text-anchor="middle" x="399.52" y="-39.99" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#444444">DENY (fail&#45;closed)</text>
+<text xml:space="preserve" text-anchor="middle" x="399.52" y="-25.74" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#444444">+ append&#45;only audit event</text>
+<text xml:space="preserve" text-anchor="middle" x="399.52" y="-11.49" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#444444">actor = shopperId (never the key)</text>
+</g>
+<!-- s1&#45;&gt;deny -->
+<g id="edge7" class="edge">
+<title>s1&#45;&gt;deny</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M553.04,-572.56C572.35,-540.44 605.52,-485.26 605.52,-485.26 605.52,-485.26 605.52,-485.26 605.52,-147.92 605.52,-147.92 520.7,-99.78 459.91,-65.29"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="461.56,-63 453.22,-61.49 458.79,-67.87 461.56,-63"/>
+<text xml:space="preserve" text-anchor="middle" x="613.4" y="-313.09" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">401</text>
+</g>
+<!-- s3 -->
+<g id="node4" class="node">
+<title>s3</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M427.05,-395.37C427.05,-395.37 276,-395.37 276,-395.37 270,-395.37 264,-389.37 264,-383.37 264,-383.37 264,-361.59 264,-361.59 264,-355.59 270,-349.59 276,-349.59 276,-349.59 427.05,-349.59 427.05,-349.59 433.05,-349.59 439.05,-355.59 439.05,-361.59 439.05,-361.59 439.05,-383.37 439.05,-383.37 439.05,-389.37 433.05,-395.37 427.05,-395.37"/>
+<text xml:space="preserve" text-anchor="middle" x="351.52" y="-375.33" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">3 · Image validation</text>
+<text xml:space="preserve" text-anchor="middle" x="351.52" y="-361.08" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">person (+ optional garment)</text>
+</g>
+<!-- s2&#45;&gt;s3 -->
+<g id="edge3" class="edge">
+<title>s2&#45;&gt;s3</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M448.54,-460.78C429.79,-443.91 403.97,-420.67 383.68,-402.41"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="385.76,-400.52 377.94,-397.25 382.01,-404.68 385.76,-400.52"/>
+<text xml:space="preserve" text-anchor="middle" x="426.68" y="-424.87" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- s2&#45;&gt;deny -->
+<g id="edge8" class="edge">
+<title>s2&#45;&gt;deny</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M479.05,-460.78C486.95,-428.66 500.52,-373.48 500.52,-373.48 500.52,-373.48 500.52,-373.48 500.52,-147.92 500.52,-147.92 460.79,-101.92 431.16,-67.63"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="433.65,-66.23 426.3,-62 429.41,-69.89 433.65,-66.23"/>
+<text xml:space="preserve" text-anchor="middle" x="522.27" y="-257.2" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">kill&#45;switch</text>
+</g>
+<!-- s4 -->
+<g id="node5" class="node">
+<title>s4</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M326.68,-283.59C326.68,-283.59 146.38,-283.59 146.38,-283.59 140.38,-283.59 134.38,-277.59 134.38,-271.59 134.38,-271.59 134.38,-249.81 134.38,-249.81 134.38,-243.81 140.38,-237.81 146.38,-237.81 146.38,-237.81 326.68,-237.81 326.68,-237.81 332.68,-237.81 338.68,-243.81 338.68,-249.81 338.68,-249.81 338.68,-271.59 338.68,-271.59 338.68,-277.59 332.68,-283.59 326.68,-283.59"/>
+<text xml:space="preserve" text-anchor="middle" x="236.53" y="-263.55" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">4 · Rate limit</text>
+<text xml:space="preserve" text-anchor="middle" x="236.53" y="-249.3" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">per&#45;shopper + per&#45;tenant window</text>
+</g>
+<!-- s3&#45;&gt;s4 -->
+<g id="edge4" class="edge">
+<title>s3&#45;&gt;s4</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M327.98,-349C310.38,-332.2 286.17,-309.09 267.08,-290.87"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="269.19,-289.01 261.47,-285.51 265.32,-293.06 269.19,-289.01"/>
+<text xml:space="preserve" text-anchor="middle" x="307.97" y="-313.09" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- s3&#45;&gt;deny -->
+<g id="edge9" class="edge">
+<title>s3&#45;&gt;deny</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M354.67,-349.14C362.68,-292.34 383.9,-141.84 394.01,-70.1"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="396.75,-70.78 395.09,-62.47 391.2,-70 396.75,-70.78"/>
+<text xml:space="preserve" text-anchor="middle" x="412.65" y="-201.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">invalid / too large</text>
+</g>
+<!-- s5 -->
+<g id="node6" class="node">
+<title>s5</title>
+<path fill="white" stroke="#111111" stroke-width="1.4" d="M187.05,-171.81C187.05,-171.81 12,-171.81 12,-171.81 6,-171.81 0,-165.81 0,-159.81 0,-159.81 0,-138.03 0,-138.03 0,-132.03 6,-126.03 12,-126.03 12,-126.03 187.05,-126.03 187.05,-126.03 193.05,-126.03 199.05,-132.03 199.05,-138.03 199.05,-138.03 199.05,-159.81 199.05,-159.81 199.05,-165.81 193.05,-171.81 187.05,-171.81"/>
+<text xml:space="preserve" text-anchor="middle" x="99.53" y="-151.77" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">5 · Budget guard</text>
+<text xml:space="preserve" text-anchor="middle" x="99.53" y="-137.52" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">spend + $0.05 ≤ monthly budget</text>
+</g>
+<!-- s4&#45;&gt;s5 -->
+<g id="edge5" class="edge">
+<title>s4&#45;&gt;s5</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M208.47,-237.22C187.23,-220.2 157.91,-196.7 135.03,-178.37"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="137.07,-176.42 129.08,-173.6 133.57,-180.79 137.07,-176.42"/>
+<text xml:space="preserve" text-anchor="middle" x="182.63" y="-201.31" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- s4&#45;&gt;deny -->
+<g id="edge10" class="edge">
+<title>s4&#45;&gt;deny</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M248.7,-237.33C269.41,-199.27 309.27,-126.03 309.27,-126.03 309.27,-126.03 339.35,-94.36 364.78,-67.59"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="366.63,-69.71 370.11,-61.98 362.57,-65.86 366.63,-69.71"/>
+<text xml:space="preserve" text-anchor="middle" x="338.9" y="-145.42" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">429 retryAfter</text>
+</g>
+<!-- admit -->
+<g id="node7" class="node">
+<title>admit</title>
+<path fill="#f4f4f4" stroke="#111111" stroke-width="2.4" d="M187.05,-52.91C187.05,-52.91 12,-52.91 12,-52.91 6,-52.91 0,-46.91 0,-40.91 0,-40.91 0,-19.12 0,-19.12 0,-13.12 6,-7.12 12,-7.12 12,-7.12 187.05,-7.12 187.05,-7.12 193.05,-7.12 199.05,-13.12 199.05,-19.12 199.05,-19.12 199.05,-40.91 199.05,-40.91 199.05,-46.91 193.05,-52.91 187.05,-52.91"/>
+<text xml:space="preserve" text-anchor="middle" x="99.53" y="-32.87" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">Admit</text>
+<text xml:space="preserve" text-anchor="middle" x="99.53" y="-18.62" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#111111">→ idempotency / cache / engine</text>
+</g>
+<!-- s5&#45;&gt;admit -->
+<g id="edge6" class="edge">
+<title>s5&#45;&gt;admit</title>
+<path fill="none" stroke="#111111" stroke-width="1.3" d="M99.53,-125.38C99.53,-107.86 99.53,-83.32 99.53,-63.66"/>
+<polygon fill="#111111" stroke="#111111" stroke-width="1.3" points="102.33,-63.85 99.53,-55.85 96.73,-63.85 102.33,-63.85"/>
+<text xml:space="preserve" text-anchor="middle" x="110.03" y="-89.53" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#444444">pass</text>
+</g>
+<!-- s5&#45;&gt;deny -->
+<g id="edge11" class="edge">
+<title>s5&#45;&gt;deny</title>
+<path fill="none" stroke="#777777" stroke-width="1.3" stroke-dasharray="5,2" d="M126.93,-125.59C148.27,-108.21 174.28,-87.03 174.28,-87.03 174.28,-87.03 231.53,-72.79 288.31,-58.67"/>
+<polygon fill="#777777" stroke="#777777" stroke-width="1.3" points="288.78,-61.44 295.86,-56.79 287.42,-56.01 288.78,-61.44"/>
+<text xml:space="preserve" text-anchor="middle" x="211.4" y="-89.53" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#777777">budget exceeded</text>
+</g>
+</g>
+</svg>
+</div></div></body></html>

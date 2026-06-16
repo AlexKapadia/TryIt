@@ -1,0 +1,35 @@
+digraph G {
+  rankdir=TB;
+  splines=polyline;
+  label="Widget state machine — consent fail-closed (state.ts)";
+  bgcolor="white";
+  fontname="Helvetica";
+  labelloc="t";
+  fontsize=18;
+  fontcolor="#111111";
+  pad="0.35";
+  nodesep=0.55;
+  ranksep=0.75;
+  node [shape=box style="rounded,filled" fillcolor="white" color="#111111" fontcolor="#111111" fontname="Helvetica" fontsize=12 penwidth=1.4 margin="0.20,0.12"];
+  edge [color="#111111" fontcolor="#444444" fontname="Helvetica" fontsize=10 penwidth=1.3 arrowsize=0.8];
+
+  idle       [label="idle"];
+  consent    [label="consent"];
+  upload     [label="upload"];
+  uploading  [label="uploading"];
+  processing [label="processing"];
+  result     [label="result" fillcolor="#f4f4f4" penwidth=2.4];
+  error      [label="error" fillcolor="#ececec" fontcolor="#444444"];
+
+  idle       -> consent    [label="OPEN"];
+  consent    -> upload     [label="CONSENT_ACCEPT\n(fail-closed: sole path,\nsets consentGiven)" fontcolor="#111111"];
+  consent    -> idle       [label="CONSENT_DECLINE / CLOSE" color="#777777" fontcolor="#777777" style=dashed];
+  upload     -> uploading  [label="SUBMIT (photo set)"];
+  upload     -> error      [label="FILE_REJECTED" color="#777777" fontcolor="#777777" style=dashed];
+  uploading  -> processing [label="JOB_CREATED"];
+  uploading  -> error      [label="JOB_FAILED" color="#777777" fontcolor="#777777" style=dashed];
+  processing -> result     [label="JOB_SUCCEEDED"];
+  processing -> error      [label="JOB_FAILED" color="#777777" fontcolor="#777777" style=dashed];
+  result     -> upload     [label="RETRY" color="#777777" fontcolor="#777777" style=dashed constraint=false];
+  error      -> upload     [label="RETRY (consent held)\nelse → idle (fail-closed)" color="#777777" fontcolor="#777777" style=dashed constraint=false];
+}
