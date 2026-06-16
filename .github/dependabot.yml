@@ -1,0 +1,19 @@
+# Dependabot keeps dependencies patched automatically (CLAUDE.md S5.6:
+# dependency scanning). Opens grouped PRs for npm and GitHub Actions updates.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      npm-minor-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
