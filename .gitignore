@@ -20,3 +20,9 @@ __pycache__/
 infra/heartbeats/.state/*.log
 infra/heartbeats/.state/all-complete
 infra/heartbeats/.state/*.lock
+
+# Python build artifacts
+*.egg-info/
+__pycache__/
+*.pyc
+services/**/.venv/
