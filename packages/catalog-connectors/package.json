@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "@tryit/contracts": "workspace:*",
-    "zod": "^3.23"
+    "zod": "^4.4"
   }
 }

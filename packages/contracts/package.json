@@ -22,7 +22,7 @@
     "lint": "eslint src"
   },
   "dependencies": {
-    "zod": "^3.23"
+    "zod": "^4.4"
   },
   "devDependencies": {
     "fast-check": "^4.8.0"
