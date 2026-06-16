@@ -31,3 +31,7 @@ services/**/.venv/
 # Stryker mutation testing
 .stryker-tmp/
 reports/mutation/
+
+# Stryker reports at any package depth
+**/reports/mutation/
+**/.stryker-tmp/
