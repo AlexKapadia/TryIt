@@ -12,8 +12,11 @@
 export type { EngineLogger, ProviderContext, TryOnProvider } from './provider.js';
 export { NOOP_LOGGER } from './provider.js';
 
-export { DeterministicProvider, DETERMINISTIC_RESULT_ORIGIN } from './providers/deterministic.js';
-export { buildPlaceholderSvg } from './providers/deterministic_placeholder_svg.js';
+export { DeterministicProvider } from './providers/deterministic.js';
+export {
+  buildPlaceholderSvg,
+  buildPlaceholderImageDataUrl,
+} from './providers/deterministic_placeholder_svg.js';
 
 export { FalProvider, FAL_TRYON_ENDPOINT, defaultFalRunnerFactory } from './providers/fal.js';
 export type {

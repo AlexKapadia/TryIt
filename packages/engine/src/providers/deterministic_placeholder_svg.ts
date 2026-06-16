@@ -1,10 +1,11 @@
 /**
  * @tryit/engine/providers/deterministic_placeholder_svg — reproducible placeholder image.
  *
- * Builds a deterministic SVG composite from a request's stable hash. The output is purely a
- * function of the digest, so identical requests yield a byte-identical image. The SVG is used
- * as the visible artefact behind the deterministic provider's result; it never touches the
- * network and pulls colours/shapes solely from the digest's hex nibbles.
+ * Builds a deterministic SVG composite from a request's stable hash and wraps it as a renderable
+ * `data:image/svg+xml;base64,...` URL. The output is purely a function of the digest, so identical
+ * requests yield a byte-identical image and data URL. The data URL is the visible artefact behind
+ * the deterministic provider's result; it never touches the network (no fake host to resolve) and
+ * pulls colours/shapes solely from the digest's hex nibbles.
  */
 
 /** Derive two hex-driven accent colours from the digest so the swatch varies per request. */
@@ -32,4 +33,20 @@ export function buildPlaceholderSvg(digest: string): string {
       `text-anchor="middle">tryit:${digest}</text>`,
     '</svg>',
   ].join('');
+}
+
+/** Base64-encode a UTF-8 string. Node's Buffer is always present in the runtime targets. */
+function base64Utf8(input: string): string {
+  return Buffer.from(input, 'utf-8').toString('base64');
+}
+
+/**
+ * Wrap the deterministic placeholder SVG as a browser-renderable data URL.
+ *
+ * @returns A self-contained `data:image/svg+xml;base64,...` URL. Same digest -> identical bytes,
+ *   always, and it satisfies the contract's result-image-URL invariant (a safe inline image data
+ *   URL), so the offline/fallback result renders instead of pointing at a non-resolvable host.
+ */
+export function buildPlaceholderImageDataUrl(digest: string): string {
+  return `data:image/svg+xml;base64,${base64Utf8(buildPlaceholderSvg(digest))}`;
 }

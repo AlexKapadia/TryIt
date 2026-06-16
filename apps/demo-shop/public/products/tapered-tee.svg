@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Heavyweight tee">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M170 160 L120 200 L150 255 L155 250 L155 450 L325 450 L325 250 L330 255 L360 200 L310 160 L285 148 L240 188 L195 148 Z" fill="#2B2B29"/>
+    <path d="M195 148 Q240 200 285 148" fill="#1F1F1D"/>
+    <path d="M120 200 L150 248"/>
+    <path d="M360 200 L330 248"/>
+  </g>
+</svg>

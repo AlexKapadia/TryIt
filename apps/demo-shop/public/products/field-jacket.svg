@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Waxed field jacket">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M150 148 L115 200 L150 248 L150 480 L330 480 L330 248 L365 200 L330 148 L295 128 L240 152 L185 128 Z" fill="#6E7A55"/>
+    <path d="M185 128 L240 185 L295 128 L240 152 Z" fill="#5E6948"/>
+    <path d="M240 185 L240 470"/>
+    <path d="M115 200 L92 330 L128 350 L150 248"/>
+    <path d="M365 200 L388 330 L352 350 L330 248"/>
+    <rect x="168" y="300" width="56" height="60" rx="5" fill="#62704A"/>
+    <rect x="256" y="300" width="56" height="60" rx="5" fill="#62704A"/>
+    <rect x="172" y="210" width="46" height="40" rx="5" fill="#62704A"/>
+    <rect x="262" y="210" width="46" height="40" rx="5" fill="#62704A"/>
+  </g>
+  <circle cx="240" cy="220" r="4" fill="#3D452D"/>
+  <circle cx="240" cy="270" r="4" fill="#3D452D"/>
+  <circle cx="240" cy="320" r="4" fill="#3D452D"/>
+  <circle cx="240" cy="370" r="4" fill="#3D452D"/>
+  <circle cx="240" cy="420" r="4" fill="#3D452D"/>
+</svg>

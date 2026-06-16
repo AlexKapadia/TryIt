@@ -1,14 +1,18 @@
 /**
  * Tests for the deterministic provider: reproducibility (byte-identical for identical input),
- * full offline operation, https/contract-valid output, sensitivity to request changes, and
- * fail-closed on an already-aborted context. Property-based with fast-check; no network.
+ * full offline operation, a renderable data:image/svg+xml contract-valid output, sensitivity to
+ * request changes, and fail-closed on an already-aborted context. Property-based with fast-check;
+ * no network.
  */
 
 import { describe, expect, it } from 'vitest';
 import fc from 'fast-check';
 import { safeParseTryOnResult, type TryOnRequest } from '@tryit/contracts';
-import { DeterministicProvider, DETERMINISTIC_RESULT_ORIGIN } from './deterministic.js';
+import { DeterministicProvider } from './deterministic.js';
 import { makeContext, makeRequest } from '../test_support/fixtures.js';
+
+/** The exact data-URL prefix every deterministic result must carry (renderable inline SVG). */
+const DATA_URL_PREFIX = 'data:image/svg+xml;base64,';
 
 /** Arbitrary that produces a structurally-valid, varied TryOnRequest. */
 const requestArb: fc.Arbitrary<TryOnRequest> = fc
@@ -71,21 +75,21 @@ describe('DeterministicProvider', () => {
     expect(result.cached).toBe(false);
   });
 
-  it('emits an https URL under the deterministic origin embedding the digest', async () => {
+  it('emits a renderable data:image/svg+xml base64 url that satisfies the result contract', async () => {
     const result = await provider.tryOn(makeRequest(), makeContext());
-    expect(result.resultImageUrl.startsWith(`${DETERMINISTIC_RESULT_ORIGIN}/`)).toBe(true);
-    expect(result.resultImageUrl.startsWith('https://')).toBe(true);
-    // The digest is 16 hex chars; assert that exact shape appears in the path segment.
-    expect(result.resultImageUrl).toMatch(/\/[0-9a-f]{16}\.svg\?img=/);
+    // The result must be an inline, browser-renderable image — not a non-resolvable fake host.
+    expect(result.resultImageUrl.startsWith(DATA_URL_PREFIX)).toBe(true);
+    // And it must PASS the contract's TryOnResultSchema (the router re-validates the same way).
+    expect(safeParseTryOnResult(result).success).toBe(true);
   });
 
-  it('embeds the placeholder SVG as a base64 query param (offline, self-contained)', async () => {
+  it('embeds the deterministic SVG inline as the base64 payload (offline, self-contained)', async () => {
     const result = await provider.tryOn(makeRequest(), makeContext());
-    const img = new URL(result.resultImageUrl).searchParams.get('img');
-    expect(img).not.toBeNull();
-    const decoded = Buffer.from(img as string, 'base64').toString('utf-8');
+    const b64 = result.resultImageUrl.slice(DATA_URL_PREFIX.length);
+    const decoded = Buffer.from(b64, 'base64').toString('utf-8');
     expect(decoded.startsWith('<svg')).toBe(true);
     expect(decoded).toContain('viewBox="0 0 512 640"');
+    expect(decoded).toContain('tryit:'); // the digest label is embedded -> traceable to its request.
   });
 
   it('fails closed when the context signal is already aborted', async () => {

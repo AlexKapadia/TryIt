@@ -197,10 +197,50 @@ describe('parseTryOnResult', () => {
     expect(() => parseTryOnResult({ ...baseResult(), costUsd: -0.01 })).toThrow(ZodError);
   });
 
-  it('rejects a non-https result url', () => {
-    expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: 'http://x.io/o.png' })).toThrow(
+  it('rejects http / file / javascript result urls (fail-closed scheme allow-list)', () => {
+    for (const bad of ['http://x.io/o.png', 'file:///etc/passwd', 'javascript:alert(1)']) {
+      expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: bad })).toThrow(ZodError);
+    }
+  });
+
+  it('rejects a bare "https://" with no host (boundary: malformed https url)', () => {
+    expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: 'https://' })).toThrow(
       ZodError,
     );
+  });
+
+  it('accepts an inline data:image/svg+xml base64 url (renderable offline result)', () => {
+    const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"/>').toString('base64');
+    const url = `data:image/svg+xml;base64,${svg}`;
+    expect(parseTryOnResult({ ...baseResult(), resultImageUrl: url }).resultImageUrl).toBe(url);
+  });
+
+  it('accepts inline data: urls for every allow-listed raster MIME type', () => {
+    for (const mime of ['png', 'jpeg', 'webp']) {
+      const url = `data:image/${mime};base64,aGVsbG8=`;
+      expect(parseTryOnResult({ ...baseResult(), resultImageUrl: url }).resultImageUrl).toBe(url);
+    }
+  });
+
+  it('rejects data: urls of disallowed mime types (text/html, image/gif)', () => {
+    for (const bad of ['data:text/html;base64,aGVsbG8=', 'data:image/gif;base64,aGVsbG8=']) {
+      expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: bad })).toThrow(ZodError);
+    }
+  });
+
+  it('rejects a data:image url with an empty / non-base64 payload (boundary)', () => {
+    for (const bad of ['data:image/png;base64,', 'data:image/png;base64,not base64!!', 'data:image/png,raw']) {
+      expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: bad })).toThrow(ZodError);
+    }
+  });
+
+  it('accepts a data url exactly at the size cap and rejects one just over it (boundary)', () => {
+    const prefix = 'data:image/png;base64,';
+    const atCap = prefix + 'A'.repeat(2 * 1024 * 1024 - prefix.length);
+    expect(atCap.length).toBe(2 * 1024 * 1024); // boundary-exact: total length == cap.
+    expect(parseTryOnResult({ ...baseResult(), resultImageUrl: atCap }).resultImageUrl).toBe(atCap);
+    const overCap = atCap + 'A';
+    expect(() => parseTryOnResult({ ...baseResult(), resultImageUrl: overCap })).toThrow(ZodError);
   });
 
   it('throws when provider is empty', () => {

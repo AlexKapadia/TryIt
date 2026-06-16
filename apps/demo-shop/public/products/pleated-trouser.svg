@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Single-pleat trouser">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M175 120 L305 120 L312 160 L300 500 L255 500 L240 230 L225 500 L180 500 L168 160 Z" fill="#9FA68C"/>
+    <path d="M175 120 L305 120 L305 150 L175 150 Z" fill="#929A7E"/>
+    <path d="M240 150 L240 230" stroke-dasharray="3 8"/>
+    <rect x="218" y="128" width="44" height="14" rx="3" fill="#8A9276"/>
+  </g>
+  <circle cx="240" cy="135" r="3.5" fill="#3F4636"/>
+</svg>

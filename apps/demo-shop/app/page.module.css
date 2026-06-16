@@ -1,0 +1,91 @@
+/* Home page styles — editorial hero + responsive product grid, composed (non-uniform) spacing. */
+
+.main {
+  max-width: var(--shop-max-width);
+  margin: 0 auto;
+  padding: 0 var(--shop-space-5) var(--shop-space-8);
+}
+
+.hero {
+  padding: var(--shop-space-8) 0 var(--shop-space-7);
+  max-width: 56ch;
+}
+
+.eyebrow {
+  margin: 0 0 var(--shop-space-3);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--shop-text-tertiary);
+}
+
+.heroTitle {
+  margin: 0 0 var(--shop-space-4);
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.04;
+  font-weight: var(--shop-weight-bold);
+  letter-spacing: -0.025em;
+}
+
+.heroBody {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--shop-text-secondary);
+}
+
+.gridSection {
+  margin-top: var(--shop-space-6);
+}
+
+.gridHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--shop-space-4);
+  margin-bottom: var(--shop-space-5);
+  border-bottom: 1px solid var(--shop-border);
+}
+
+.gridTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: var(--shop-weight-semibold);
+  letter-spacing: -0.005em;
+}
+
+.gridCount {
+  font-size: 13px;
+  color: var(--shop-text-tertiary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--shop-space-5);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--shop-space-4);
+  }
+  .hero {
+    padding: var(--shop-space-7) 0 var(--shop-space-6);
+  }
+}
+
+.footer {
+  margin-top: var(--shop-space-8);
+  padding-top: var(--shop-space-5);
+  border-top: 1px solid var(--shop-border);
+  font-size: 13px;
+  color: var(--shop-text-tertiary);
+}

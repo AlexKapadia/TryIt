@@ -237,7 +237,8 @@ describe('EngineRouter', () => {
       clock,
     });
     // fal (0.05) is cheaper than deterministic (0.99) -> tried first, its http url is rejected
-    // by the router's post-stamp validation, then deterministic (https) wins the fall-through.
+    // by the router's post-stamp validation, then deterministic (renderable inline data url) wins
+    // the fall-through.
     const outcome = await router.route(
       makeRequest(),
       makeTenant({ allowedProviders: ['fal', 'deterministic'] }),
@@ -245,7 +246,7 @@ describe('EngineRouter', () => {
     expect(outcome.ok).toBe(true);
     if (outcome.ok) {
       expect(outcome.result.provider).toBe('deterministic');
-      expect(outcome.result.resultImageUrl.startsWith('https://')).toBe(true);
+      expect(outcome.result.resultImageUrl.startsWith('data:image/svg+xml;base64,')).toBe(true);
     }
   });
 

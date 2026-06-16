@@ -3,40 +3,17 @@
  *
  * This provider NEVER fails and NEVER touches the network or environment. It derives a stable
  * fingerprint from the request (see ../internal/stable_request_hash.ts) and returns a
- * reproducible placeholder result: an HTTPS URL that embeds the digest plus the base64-encoded
- * deterministic SVG. Identical requests therefore yield a byte-identical {@link TryOnResult}.
- * It is both the offline/CI default and the router's guaranteed last resort, so the engine can
- * always answer fail-closed without hard-erroring.
+ * reproducible placeholder result: a renderable `data:image/svg+xml;base64,...` URL carrying the
+ * deterministic SVG inline (see ./deterministic_placeholder_svg.ts). Identical requests therefore
+ * yield a byte-identical {@link TryOnResult}, and because the image is inline it renders in a
+ * browser with no host to resolve. It is both the offline/CI default and the router's guaranteed
+ * last resort, so the engine can always answer fail-closed without hard-erroring.
  */
 
 import type { TryOnRequest, TryOnResult } from '@tryit/contracts';
 import type { ProviderContext, TryOnProvider } from '../provider.js';
 import { stableRequestHash } from '../internal/stable_request_hash.js';
-import { buildPlaceholderSvg } from './deterministic_placeholder_svg.js';
-
-/**
- * Host the deterministic results are namespaced under. It is a stable, HTTPS-scheme synthetic
- * origin (not a live server) so the result satisfies the contract's https-only invariant while
- * remaining obviously a placeholder. The digest fully determines the path.
- */
-export const DETERMINISTIC_RESULT_ORIGIN = 'https://placeholder.tryit.dev/deterministic';
-
-/** Base64-encode a UTF-8 string without depending on the platform `btoa`/`Buffer` ambiguity. */
-function base64Utf8(input: string): string {
-  // Node's Buffer is always available in the runtime targets; deterministic and offline.
-  return Buffer.from(input, 'utf-8').toString('base64');
-}
-
-/**
- * Build the stable HTTPS result URL for a digest: a namespaced path carrying the digest and
- * the placeholder SVG as a base64 query parameter so the artefact is self-contained and the
- * URL is a pure function of the request.
- */
-function buildResultUrl(digest: string): string {
-  const svg = buildPlaceholderSvg(digest);
-  const encoded = base64Utf8(svg);
-  return `${DETERMINISTIC_RESULT_ORIGIN}/${digest}.svg?img=${encoded}`;
-}
+import { buildPlaceholderImageDataUrl } from './deterministic_placeholder_svg.js';
 
 /**
  * The terminal, offline, reproducible provider.
@@ -56,7 +33,7 @@ export class DeterministicProvider implements TryOnProvider {
     const digest = stableRequestHash(req);
     ctx.logger.debug('deterministic.tryOn', { digest, tenantId: req.tenantId });
     return {
-      resultImageUrl: buildResultUrl(digest),
+      resultImageUrl: buildPlaceholderImageDataUrl(digest),
       provider: this.id,
       // latency/cost are set authoritatively by the router; locals here are the provider's
       // own view (offline => zero marginal cost, ~instant). The router overwrites latencyMs.

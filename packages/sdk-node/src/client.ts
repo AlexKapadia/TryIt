@@ -114,7 +114,7 @@ export class TryItClient {
    * Create a new try-on job.
    *
    * Validates `request` with the contract parser before sending (fail-closed — an invalid
-   * request never reaches the network), POSTs it to `${baseUrl}/v1/tryon`, and parses the
+   * request never reaches the network), POSTs it to `${baseUrl}/v1/tryons`, and parses the
    * response body into a {@link TryOnJob} before returning.
    *
    * @throws {ApiClientError} `INVALID_INPUT` if the request fails contract validation; the
@@ -132,24 +132,24 @@ export class TryItClient {
       throw apiClientErrorFromContract(invalidInput('try-on request failed contract validation'));
     }
 
-    const response = await this.#send('POST', '/v1/tryon', JSON.stringify(validated));
+    const response = await this.#send('POST', '/v1/tryons', JSON.stringify(validated));
     return this.#parseJobResponse(response);
   }
 
   /**
    * Fetch a single try-on job by id.
    *
-   * GETs `${baseUrl}/v1/jobs/${jobId}` and parses the response into a {@link TryOnJob}.
+   * GETs `${baseUrl}/v1/tryons/${jobId}` and parses the response into a {@link TryOnJob}.
    *
    * @throws {ApiClientError} `INVALID_INPUT` for an empty id; the mapped contract error on a
    *   non-2xx response; `PROVIDER_ERROR` (fail-closed) on transport/parse failure.
    */
   public async getJob(jobId: string): Promise<TryOnJob> {
     if (jobId.length === 0) {
-      // fail-closed: never issue a GET against `/v1/jobs/` with no id.
+      // fail-closed: never issue a GET against `/v1/tryons/` with no id.
       throw apiClientErrorFromContract(invalidInput('jobId must be a non-empty string'));
     }
-    const response = await this.#send('GET', `/v1/jobs/${encodeURIComponent(jobId)}`);
+    const response = await this.#send('GET', `/v1/tryons/${encodeURIComponent(jobId)}`);
     return this.#parseJobResponse(response);
   }
 

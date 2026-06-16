@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Lambswool crew knit">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M160 165 L120 210 L155 255 L155 455 L325 455 L325 255 L360 210 L320 165 L285 150 L240 185 L195 150 Z" fill="#E5DDCB"/>
+    <path d="M195 150 Q240 210 285 150" fill="#D8CFB8"/>
+    <path d="M120 210 L150 248" />
+    <path d="M360 210 L330 248" />
+    <path d="M155 440 L325 440" stroke-width="6"/>
+    <path d="M155 250 L150 250" />
+    <path d="M325 250 L130 250" stroke-dasharray="0"/>
+    <path d="M150 448 L150 432 M170 448 L170 432 M190 448 L190 432 M210 448 L210 432 M230 448 L230 432 M250 448 L250 432 M270 448 L270 432 M290 448 L290 432 M310 448 L310 432" stroke-width="2"/>
+  </g>
+</svg>

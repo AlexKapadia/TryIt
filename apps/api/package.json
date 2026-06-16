@@ -1,0 +1,30 @@
+{
+  "name": "@tryit/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "next lint || eslint app"
+  },
+  "dependencies": {
+    "@tryit/cache": "workspace:*",
+    "@tryit/catalog-connectors": "workspace:*",
+    "@tryit/contracts": "workspace:*",
+    "@tryit/engine": "workspace:*",
+    "@tryit/security": "workspace:*",
+    "next": "^15",
+    "react": "^18",
+    "react-dom": "^18",
+    "zod": "^3.23"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
+  }
+}

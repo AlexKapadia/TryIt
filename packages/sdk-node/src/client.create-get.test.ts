@@ -21,14 +21,14 @@ function client(script: Parameters<typeof makeCapturingFetch>[0]) {
 }
 
 describe('createTryOn', () => {
-  it('sends POST to /v1/tryon with bearer auth, json content-type, and the validated body', async () => {
+  it('sends POST to /v1/tryons with bearer auth, json content-type, and the validated body', async () => {
     const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
 
     const job = await c.createTryOn(VALID_REQUEST);
 
     expect(cap.calls).toHaveLength(1);
     const call = cap.calls[0]!;
-    expect(call.url).toBe('https://api.tryit.example/v1/tryon');
+    expect(call.url).toBe('https://api.tryit.example/v1/tryons');
     expect(call.method).toBe('POST');
     expect(call.headers['Authorization']).toBe('Bearer sk-secret-123');
     expect(call.headers['Content-Type']).toBe('application/json');
@@ -89,13 +89,13 @@ describe('createTryOn', () => {
 });
 
 describe('getJob', () => {
-  it('sends GET to /v1/jobs/:id with bearer auth and no body', async () => {
+  it('sends GET to /v1/tryons/:id with bearer auth and no body', async () => {
     const { c, cap } = client([{ status: 200, body: asBody(QUEUED_JOB) }]);
 
     const job = await c.getJob('job-1');
 
     const call = cap.calls[0]!;
-    expect(call.url).toBe('https://api.tryit.example/v1/jobs/job-1');
+    expect(call.url).toBe('https://api.tryit.example/v1/tryons/job-1');
     expect(call.method).toBe('GET');
     expect(call.headers['Authorization']).toBe('Bearer sk-secret-123');
     expect(call.headers['Content-Type']).toBeUndefined();
@@ -106,7 +106,7 @@ describe('getJob', () => {
   it('url-encodes a job id containing reserved characters', async () => {
     const { c, cap } = client([{ status: 200, body: asBody({ ...QUEUED_JOB, jobId: 'a/b 1' }) }]);
     await c.getJob('a/b 1');
-    expect(cap.calls[0]!.url).toBe('https://api.tryit.example/v1/jobs/a%2Fb%201');
+    expect(cap.calls[0]!.url).toBe('https://api.tryit.example/v1/tryons/a%2Fb%201');
   });
 
   it('rejects an empty job id without touching the network (fail-closed)', async () => {

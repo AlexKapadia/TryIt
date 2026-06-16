@@ -29,8 +29,12 @@ service. Licence: MIT.
   content-addressed), catalog-connectors (shopify + generic), sdk-node,
   widget (web component), inference-py (FastAPI, mock + Leffa stub). ~569
   adversarial/property-based tests; build+typecheck+lint+test all green. Pushed.
-- [ ] **Gate 3 - Integrate** PENDING. Wire components end-to-end, build the
-  demo-shop, add the live Playwright E2E suite, and catalog auto-connect.
+- [x] **Gate 3 - Integrate** COMPLETE. apps/api wires the full fail-closed
+  pipeline (auth -> kill-switch -> validation -> rate-limit -> budget -> cache
+  -> engine -> audit) over canonical `/v1/tryons` routes; apps/demo-shop
+  (ATELIER storefront) embeds the widget SSR-safe; live Playwright E2E (17
+  tests) drives the real browser through every flow + state and renders a real
+  result image. build/typecheck/lint/test all green (turbo 16/16). Pushed.
 - [ ] **Gate 4 - Harden / Ship** PENDING. Mutation testing, security scans,
   `evidence/` showcase (stats + PNG/HTML graphs + B&W flow diagrams),
   self-host compose + IaC, docs, public-data validation, release.

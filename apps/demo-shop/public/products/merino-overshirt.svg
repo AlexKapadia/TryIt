@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Merino overshirt">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M150 150 L120 200 L150 250 L150 470 L330 470 L330 250 L360 200 L330 150 L300 130 L240 150 L180 130 Z" fill="#C9CBC8"/>
+    <path d="M180 130 L240 175 L300 130" />
+    <path d="M240 175 L240 460" stroke-dasharray="2 10"/>
+    <path d="M120 200 L95 320 L130 340 L150 250"/>
+    <path d="M360 200 L385 320 L350 340 L330 250"/>
+    <rect x="200" y="270" width="34" height="46" rx="4" fill="#B8BAB6"/>
+  </g>
+  <circle cx="240" cy="215" r="4" fill="#5A574F"/>
+  <circle cx="240" cy="270" r="4" fill="#5A574F"/>
+  <circle cx="240" cy="325" r="4" fill="#5A574F"/>
+  <circle cx="240" cy="380" r="4" fill="#5A574F"/>
+</svg>

@@ -51,17 +51,52 @@ export const TryOnRequestSchema = z.object({
 export type TryOnRequest = z.infer<typeof TryOnRequestSchema>;
 
 /**
+ * Maximum length (chars) of an inline `data:` result image URL. Bounds memory/transfer so a
+ * hostile or buggy provider cannot surface an unbounded inline blob. ~2 MiB of URL text.
+ */
+export const MAX_RESULT_IMAGE_DATA_URL_LENGTH = 2 * 1024 * 1024;
+
+/**
+ * Inline result images are allowed ONLY as base64 data URLs of a narrow raster/vector image
+ * allow-list (the same formats providers emit, plus SVG for the offline deterministic artefact).
+ * Anything else — `data:text/html`, other MIME types, a missing/invalid base64 payload — fails to
+ * match. The base64 group requires at least one character, so an empty payload is rejected.
+ */
+const RESULT_IMAGE_DATA_URL_PATTERN =
+  /^data:image\/(?:svg\+xml|png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/;
+
+/**
+ * A result image URL is acceptable iff it is EITHER a well-formed `https://` URL (remote provider
+ * results — no plaintext / `file:` / `javascript:` / SSRF vectors) OR a bounded, safe inline image
+ * `data:` URL from the allow-list above (so an offline/fallback result is actually renderable in a
+ * browser). Fail-closed: every other shape is rejected.
+ */
+export function isAcceptableResultImageUrl(value: string): boolean {
+  if (value.startsWith('https://')) {
+    try {
+      // Guard against a bare scheme ("https://") or otherwise malformed URL slipping through.
+      return new URL(value).protocol === 'https:';
+    } catch {
+      return false; // fail-closed: not a well-formed absolute URL.
+    }
+  }
+  // fail-closed: bound the length BEFORE the regex, then require the exact safe data-URL shape.
+  return (
+    value.length <= MAX_RESULT_IMAGE_DATA_URL_LENGTH && RESULT_IMAGE_DATA_URL_PATTERN.test(value)
+  );
+}
+
+/**
  * The outcome of a completed try-on generation as returned to the caller.
  *
  * `latencyMs` and `costUsd` are non-negative; `cached` flags a result served from cache
  * (which typically carries zero marginal cost). `provider` records which backend produced it.
  */
 export const TryOnResultSchema = z.object({
-  // fail-closed: only HTTPS result URLs are surfaced to callers.
-  resultImageUrl: z
-    .string()
-    .url()
-    .refine((value) => value.startsWith('https://'), { message: 'result url must use https' }),
+  // fail-closed: only an https URL or a bounded, safe inline image data-URL is surfaced.
+  resultImageUrl: z.string().refine(isAcceptableResultImageUrl, {
+    message: 'result url must be https or a safe inline image data-url',
+  }),
   provider: z.string().min(1),
   latencyMs: z.number().nonnegative(),
   cached: z.boolean(),

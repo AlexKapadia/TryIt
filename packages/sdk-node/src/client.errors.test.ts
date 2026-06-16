@@ -116,7 +116,7 @@ describe('baseUrl normalisation', () => {
     const cap = makeCapturingFetch([{ status: 200, body: asBody(QUEUED_JOB) }]);
     const c = new TryItClient({ apiKey: KEY, baseUrl: 'https://api.tryit.example///', fetch: cap.fetch });
     await c.getJob('job-1');
-    expect(cap.calls[0]!.url).toBe('https://api.tryit.example/v1/jobs/job-1');
+    expect(cap.calls[0]!.url).toBe('https://api.tryit.example/v1/tryons/job-1');
   });
 });
 

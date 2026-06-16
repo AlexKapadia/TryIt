@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Garment-dyed oxford shirt">
+  <rect width="480" height="600" fill="#F4F2EE"/>
+  <g fill="none" stroke="#5A574F" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M155 155 L125 195 L150 235 L150 460 L330 460 L330 235 L355 195 L325 155 L290 140 L240 165 L190 140 Z" fill="#ECE7DC"/>
+    <path d="M190 140 L240 180 L290 140 L240 165 Z" fill="#E2DBCB"/>
+    <path d="M240 180 L240 450"/>
+    <path d="M125 195 L100 300 L132 318 L150 235"/>
+    <path d="M355 195 L380 300 L348 318 L330 235"/>
+    <rect x="205" y="250" width="30" height="40" rx="3" fill="#E0D8C7"/>
+  </g>
+  <circle cx="240" cy="210" r="3.5" fill="#5A574F"/>
+  <circle cx="240" cy="260" r="3.5" fill="#5A574F"/>
+  <circle cx="240" cy="310" r="3.5" fill="#5A574F"/>
+  <circle cx="240" cy="360" r="3.5" fill="#5A574F"/>
+</svg>

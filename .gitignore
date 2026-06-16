@@ -12,6 +12,7 @@ __pycache__/
 .venv/
 .next/
 .stryker-tmp/
+/e2e/.cache
 
 # TS build info
 *.tsbuildinfo
