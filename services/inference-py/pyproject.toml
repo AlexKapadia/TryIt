@@ -1,0 +1,34 @@
+[project]
+name = "tryit-inference"
+version = "0.0.0"
+description = "Self-hosted CatVTON/Leffa virtual try-on inference service for the TryIt platform."
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "pillow",
+]
+
+[project.optional-dependencies]
+model = [
+    "torch",
+    "diffusers",
+]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "httpx",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+# Run from the service root so ``app`` and ``tests`` import cleanly.
+testpaths = ["tests"]
+addopts = "-q"

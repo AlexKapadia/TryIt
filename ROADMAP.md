@@ -23,8 +23,12 @@ service. Licence: MIT.
   caching as primary cost lever); full zod data contracts in
   `packages/contracts` (118 tests, 100% coverage); STRIDE `docs/threat-model.md`;
   UI design brief in `docs/design/`. Pushed.
-- [ ] **Gate 2 - Build** PENDING. Implement packages test-first: security,
-  engine + providers, cache, catalog-connectors, inference-py, widget + sdk.
+- [x] **Gate 2 - Build** COMPLETE. All packages implemented test-first and
+  green: security (auth/rate-limit/image-validation/audit), engine (router +
+  5 provider adapters incl. deterministic fallback), cache (tenant-namespaced
+  content-addressed), catalog-connectors (shopify + generic), sdk-node,
+  widget (web component), inference-py (FastAPI, mock + Leffa stub). ~569
+  adversarial/property-based tests; build+typecheck+lint+test all green. Pushed.
 - [ ] **Gate 3 - Integrate** PENDING. Wire components end-to-end, build the
   demo-shop, add the live Playwright E2E suite, and catalog auto-connect.
 - [ ] **Gate 4 - Harden / Ship** PENDING. Mutation testing, security scans,
