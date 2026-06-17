@@ -55,4 +55,26 @@ describe('orderCandidates — id tiebreak (cost AND priority tied)', () => {
     );
     expect(ordered.map((c) => c.id)).toEqual(['google-vto', 'self-hosted']);
   });
+
+  it('sorts THREE id-tied candidates, exercising both `<` and `>` comparator branches', () => {
+    // With a 2-element array V8 only ever evaluates `a.id < b.id`, leaving the `a.id > b.id`
+    // branch uncovered. This 3-element shuffled input forces the comparator to evaluate BOTH
+    // the `<` and `>` branches, so flipping either comparator changes the observed order.
+    const ids = ['google-vto', 'self-hosted', 'fal'] as const;
+    const routing = new Map<ProviderId, ProviderRouting>(
+      ids.map((id) => [id, { priority: 5, costPerCallUsd: 0.03 } as ProviderRouting]),
+    );
+    const ordered = orderCandidates([...ids], routing, registry([...ids]));
+    // Fully deterministic ASCII-ascending id order regardless of input order.
+    expect(ordered.map((c) => c.id)).toEqual(['fal', 'google-vto', 'self-hosted']);
+  });
+
+  it('sorts FOUR id-tied candidates into strict ASCII order (comparator stress)', () => {
+    const ids = ['self-hosted', 'fal', 'replicate', 'google-vto'] as const;
+    const routing = new Map<ProviderId, ProviderRouting>(
+      ids.map((id) => [id, { priority: 2, costPerCallUsd: 0.07 } as ProviderRouting]),
+    );
+    const ordered = orderCandidates([...ids], routing, registry([...ids]));
+    expect(ordered.map((c) => c.id)).toEqual(['fal', 'google-vto', 'replicate', 'self-hosted']);
+  });
 });
