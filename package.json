@@ -19,7 +19,7 @@
     "@stryker-mutator/vitest-runner": "^9.6.1",
     "@types/node": "^22",
     "@vitest/coverage-v8": "^3.2.6",
-    "eslint": "^9",
+    "eslint": "^10",
     "fast-check": "^4",
     "jsdom": "^25",
     "prettier": "^3",
