@@ -24,6 +24,6 @@
     "@tryit/contracts": "workspace:*"
   },
   "devDependencies": {
-    "jsdom": "^25"
+    "jsdom": "^29"
   }
 }
