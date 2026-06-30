@@ -19,12 +19,12 @@
     "@tryit/engine": "workspace:*",
     "@tryit/security": "workspace:*",
     "next": "^15",
-    "react": "^18",
+    "react": "^19",
     "react-dom": "^18",
     "zod": "^3.23"
   },
   "devDependencies": {
-    "@types/react": "^18",
+    "@types/react": "^19",
     "@types/react-dom": "^18"
   }
 }
